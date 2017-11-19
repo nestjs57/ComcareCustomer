@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/navigation_home"
+        android:icon="@drawable/ic_menu_camera"
+        android:title="หน้าแรก" />
+
+    <item
+        android:id="@+id/navigation_status"
+        android:icon="@drawable/ic_menu_camera"
+        android:title="สถานะ" />
+
+    <item
+        android:id="@+id/navigation_chat"
+        android:icon="@drawable/ic_menu_camera"
+        android:title="แชท" />
+    <item
+        android:id="@+id/navigation_chats"
+        android:icon="@drawable/ic_menu_camera"
+        android:title="แชท" />
+
+</menu>
