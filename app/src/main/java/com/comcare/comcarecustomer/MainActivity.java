@@ -18,7 +18,9 @@ import android.util.Base64;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
+import com.facebook.login.LoginManager;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
@@ -158,13 +160,17 @@ public class MainActivity extends AppCompatActivity
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
+            FirebaseAuth.getInstance().signOut();
+            LoginManager.getInstance().logOut();
+            Intent intent = new Intent(this, MainActivity.class);
+            startActivity(intent);
+            finish();
             return true;
         }
 
         return super.onOptionsItemSelected(item);
     }
 
-    @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
@@ -173,14 +179,21 @@ public class MainActivity extends AppCompatActivity
         if (id == R.id.nav_camera) {
             // Handle the camera action
         } else if (id == R.id.nav_gallery) {
+            Toast.makeText(MainActivity.this, "nav_gallery", Toast.LENGTH_LONG).show();
 
         } else if (id == R.id.nav_slideshow) {
+            Toast.makeText(MainActivity.this, "nav_slideshow", Toast.LENGTH_LONG).show();
 
         } else if (id == R.id.nav_manage) {
+            Toast.makeText(MainActivity.this, "nav_manage", Toast.LENGTH_LONG).show();
 
         } else if (id == R.id.nav_share) {
+            Toast.makeText(MainActivity.this, "nav_share", Toast.LENGTH_LONG).show();
 
         } else if (id == R.id.nav_send) {
+            Toast.makeText(MainActivity.this, "nav_send", Toast.LENGTH_LONG).show();
+
+
 
         }
 

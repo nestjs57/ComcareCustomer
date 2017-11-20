@@ -1,6 +1,7 @@
 package com.comcare.comcarecustomer;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -28,6 +29,8 @@ public class Login extends Activity {
     private CallbackManager mCallbackManager;
     private FirebaseAuth mAuth;
     private CallbackManager callbackManager;
+    private ProgressDialog mProgressDialog;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,7 +38,7 @@ public class Login extends Activity {
         setContentView(R.layout.activity_login);
 
         mAuth = FirebaseAuth.getInstance();
-        //mProgressDialog = new ProgressDialog(this);
+        mProgressDialog = new ProgressDialog(this);
 
 
         callbackManager = CallbackManager.Factory.create();
@@ -77,8 +80,8 @@ public class Login extends Activity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         callbackManager.onActivityResult(requestCode, resultCode, data);
-        //mProgressDialog.setMessage("กำลังเข้าสู่ระบบ ..");
-        //mProgressDialog.show();
+        mProgressDialog.setMessage("กำลังเข้าสู่ระบบ ..");
+        mProgressDialog.show();
     }
     private void handleFacebookAccessToken(AccessToken token) {
         // [START_EXCLUDE silent]
@@ -90,7 +93,7 @@ public class Login extends Activity {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
-                            //mProgressDialog.dismiss();
+                            mProgressDialog.dismiss();
                             // Sign in success, update UI with the signed-in user's information
                             FirebaseUser user = mAuth.getCurrentUser();
 
@@ -121,11 +124,6 @@ public class Login extends Activity {
                                 dbref.child("user").child(user.getUid()).child("info").child("profile_image").setValue(profile_image);
 
                             }
-
-
-
-
-
                             //Toast.makeText(login.this, "username & password Fail", Toast.LENGTH_SHORT).show();
                             Intent intent = new Intent(getApplication(), MainActivity.class);
                             finish();
