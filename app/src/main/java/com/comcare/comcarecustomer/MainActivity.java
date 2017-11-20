@@ -18,11 +18,19 @@ import android.util.Base64;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.facebook.login.LoginManager;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -66,6 +74,41 @@ public class MainActivity extends AppCompatActivity
             finish();
 
         }
+
+
+
+            final DatabaseReference dbref = FirebaseDatabase.getInstance().getReference();
+
+
+            if (mAuth != null) {
+                dbref.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+                        final FirebaseUser user = mAuth;
+
+                        String desc_ofPost = (String) dataSnapshot.child("user").child(user.getUid()).child("info").child("profile_image").getValue();
+                        String name = (String) dataSnapshot.child("user").child(user.getUid()).child("info").child("full_name").getValue();
+
+                        ImageView profile = (ImageView) findViewById(R.id.imageView);
+                        TextView full_name = (TextView) findViewById(R.id.txtEmail);
+
+
+                        full_name.setText(name);
+                        Glide.with(getApplication()).load(desc_ofPost).transform(new CircleTransform(getApplication())).into(profile);
+
+                        //full_name.setText(name);
+                        //Glide.with(getApplication()).load(desc_ofPost).transform(new CircleTransform(getApplication())).into(profile);
+
+                    }
+
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+
+                    }
+                });
+
+            }
+
 
 
     }
