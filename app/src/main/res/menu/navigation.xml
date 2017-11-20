@@ -15,9 +15,6 @@
         android:id="@+id/navigation_chat"
         android:icon="@drawable/ic_format_list_bulleted_black_24dp"
         android:title="แชท" />
-    <item
-        android:id="@+id/navigation_chats"
-        android:icon="@drawable/ic_chat_black_24dp"
-        android:title="ประวัติ" />
+
 
 </menu>

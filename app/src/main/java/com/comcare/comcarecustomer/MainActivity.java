@@ -1,5 +1,8 @@
 package com.comcare.comcarecustomer;
 
+import android.content.Intent;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
@@ -11,11 +14,21 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Base64;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+
+    private FirebaseUser mAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,8 +54,36 @@ public class MainActivity extends AppCompatActivity
         FragmentManager frg = getSupportFragmentManager();
         FragmentTransaction transaction = frg.beginTransaction();
         transaction.replace(R.id.content, new Fragment1()).commit();
+        debugHashKey();
+
+
+        mAuth = FirebaseAuth.getInstance().getCurrentUser();
+        if (mAuth == null) {
+            Intent intent = new Intent(getApplication(), Login.class);
+            startActivity(intent);
+            finish();
+
+        }
+
+
     }
 
+    private void debugHashKey() {
+        try {
+            PackageInfo info = getPackageManager().getPackageInfo(
+                    "com.comcare.comcarecustomer",
+                    PackageManager.GET_SIGNATURES);
+            for (android.content.pm.Signature signature : info.signatures) {
+                MessageDigest md = MessageDigest.getInstance("SHA");
+                md.update(signature.toByteArray());
+                Log.d("KeyHash:", Base64.encodeToString(md.digest(), Base64.DEFAULT));
+            }
+        } catch (PackageManager.NameNotFoundException e) {
+
+        } catch (NoSuchAlgorithmException e) {
+
+        }
+    }
 
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
@@ -63,9 +104,7 @@ public class MainActivity extends AppCompatActivity
                 case R.id.navigation_chat:
                     transaction.replace(R.id.content, new Fragment3()).commit();
                     return true;
-                case R.id.navigation_chats:
-                    transaction.replace(R.id.content, new Fragment4()).commit();
-                    return true;
+
             }
             return false;
         }

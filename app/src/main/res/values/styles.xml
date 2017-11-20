@@ -17,4 +17,7 @@
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
+    <string name="facebook_app_id">1964790443766679</string>
+    <string name="fb_login_protocol_scheme">fb1964790443766679</string>
+
 </resources>
