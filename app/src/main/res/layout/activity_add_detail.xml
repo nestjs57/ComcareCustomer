@@ -23,7 +23,7 @@
             />
 
         <EditText
-            android:id="@+id/editText1"
+            android:id="@+id/edt1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="5dp"
@@ -31,11 +31,11 @@
             android:background="@drawable/meterial_ph_white"
             android:ems="10"
             android:hint="อาการที่พบ"
-            android:textColor="#333"
-            android:textSize="14sp"
-            android:padding="10dp"
+            android:maxLength="38"
             android:maxLines="1"
-            android:maxLength="38"/>
+            android:padding="10dp"
+            android:textColor="#333"
+            android:textSize="14sp" />
 
         <TextView
             android:id="@+id/textview2"
@@ -48,7 +48,7 @@
             android:textSize="16dp" />
 
         <EditText
-            android:id="@+id/editText2"
+            android:id="@+id/edt2"
             android:layout_width="match_parent"
             android:layout_height="120dp"
             android:layout_marginBottom="5dp"
@@ -58,12 +58,11 @@
             android:gravity="top"
             android:hint="เครื่องผิดปกติอย่างไร เช่น จอสีฟ้า"
             android:inputType="textMultiLine"
-            android:padding="10dp"
-            android:textColor="#333"
-            android:textSize="14sp"
             android:maxHeight="120dp"
             android:maxLength="168"
-            />
+            android:padding="10dp"
+            android:textColor="#333"
+            android:textSize="14sp" />
 
         <TextView
             android:id="@+id/textview3"
@@ -89,59 +88,59 @@
                 android:orientation="horizontal">
 
                 <ImageButton
-                    android:id="@+id/imageButton1"
+                    android:id="@+id/btnImage1"
                     android:layout_width="100dp"
                     android:layout_height="100dp"
                     android:layout_gravity="center"
                     android:layout_marginBottom="5dp"
-                    android:layout_marginTop="5dp"
                     android:layout_marginLeft="5dp"
                     android:layout_marginRight="5dp"
+                    android:layout_marginTop="5dp"
                     android:background="@color/cardview_shadow_start_color"
-                    app:srcCompat="@android:drawable/ic_menu_add"/>
+                    app:srcCompat="@android:drawable/ic_menu_add" />
 
                 <ImageButton
-                    android:id="@+id/imageButton2"
+                    android:id="@+id/btnImage2"
                     android:layout_width="100dp"
                     android:layout_height="100dp"
                     android:layout_gravity="center"
                     android:layout_marginBottom="5dp"
-                    android:layout_marginTop="5dp"
                     android:layout_marginLeft="5dp"
                     android:layout_marginRight="5dp"
+                    android:layout_marginTop="5dp"
                     android:background="@color/cardview_shadow_start_color"
-                    app:srcCompat="@android:drawable/ic_menu_add"/>
+                    app:srcCompat="@android:drawable/ic_menu_add" />
 
                 <ImageButton
-                    android:id="@+id/imageButton3"
+                    android:id="@+id/btnImage3"
                     android:layout_width="100dp"
                     android:layout_height="100dp"
                     android:layout_gravity="center"
                     android:layout_marginBottom="5dp"
-                    android:layout_marginTop="5dp"
                     android:layout_marginLeft="5dp"
                     android:layout_marginRight="5dp"
+                    android:layout_marginTop="5dp"
                     android:background="@color/cardview_shadow_start_color"
-                    app:srcCompat="@android:drawable/ic_menu_add"/>
+                    app:srcCompat="@android:drawable/ic_menu_add" />
 
                 <ImageButton
-                    android:id="@+id/imageButton4"
+                    android:id="@+id/btnImage4"
                     android:layout_width="100dp"
                     android:layout_height="100dp"
                     android:layout_gravity="center"
                     android:layout_marginBottom="5dp"
-                    android:layout_marginTop="5dp"
                     android:layout_marginLeft="5dp"
                     android:layout_marginRight="5dp"
+                    android:layout_marginTop="5dp"
                     android:background="@color/cardview_shadow_start_color"
-                    app:srcCompat="@android:drawable/ic_menu_add"/>
+                    app:srcCompat="@android:drawable/ic_menu_add" />
 
 
             </LinearLayout>
         </HorizontalScrollView>
 
         <Button
-            android:id="@+id/button3"
+            android:id="@+id/btnNext"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_marginBottom="5dp"

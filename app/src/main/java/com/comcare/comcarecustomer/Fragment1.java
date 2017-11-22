@@ -2,6 +2,7 @@ package com.comcare.comcarecustomer;
 
 
 import android.Manifest;
+import android.content.Intent;
 import android.location.Location;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -65,7 +66,19 @@ public class Fragment1 extends Fragment implements GoogleMap.OnMyLocationButtonC
         dataset = new ArrayList<MarkerModel>();
 
         bindWidgetMap(v);
+        setEvent(v);
         return v;
+    }
+
+    private void setEvent(View v) {
+        btnRequese = (Button) v.findViewById(R.id.btnRequese);
+        btnRequese.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(),AddDetail.class);
+                startActivity(intent);
+            }
+        });
     }
 
     private void bindWidgetMap(View v) {
