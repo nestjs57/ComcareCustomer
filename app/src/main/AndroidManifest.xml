@@ -58,6 +58,11 @@
             android:name=".MainActivity"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar">
+
+        </activity>
+        <activity android:name=".Login" />
+        <activity android:name=".AddDetail"></activity>
+        <activity android:name=".SumDetail">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
