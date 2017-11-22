@@ -34,7 +34,8 @@
             android:textColor="#333"
             android:textSize="14sp"
             android:padding="10dp"
-            android:maxLines="1"/>
+            android:maxLines="1"
+            android:maxLength="38"/>
 
         <TextView
             android:id="@+id/textview2"
@@ -60,8 +61,8 @@
             android:padding="10dp"
             android:textColor="#333"
             android:textSize="14sp"
-            android:maxLines="4"
-
+            android:maxHeight="120dp"
+            android:maxLength="168"
             />
 
         <TextView
