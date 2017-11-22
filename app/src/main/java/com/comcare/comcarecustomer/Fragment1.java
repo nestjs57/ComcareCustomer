@@ -148,7 +148,9 @@ public class Fragment1 extends Fragment implements GoogleMap.OnMyLocationButtonC
                     public void onConnected(Bundle bundle) {
                         mMapView.setMyLocationEnabled(true);
                         // get last location
-                        getLastLocation();
+                        try {
+                            getLastLocation();
+                        }catch (Exception e){}
 
                         // set request
                         mRequest = LocationRequest.create();
