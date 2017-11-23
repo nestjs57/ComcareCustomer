@@ -65,18 +65,13 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
         </activity>
-
-
-        <activity android:name=".SumDetail">
-
-        </activity>
+        <activity android:name=".SumDetail" />
         <activity android:name=".Login" />
         <activity
             android:name=".AddDetail"
-            android:windowSoftInputMode="stateHidden"></activity>
-        <activity android:name=".Models.test"></activity>
+            android:windowSoftInputMode="stateHidden" />
+        <activity android:name=".ConfirmPopup"></activity>
     </application>
 
 </manifest>

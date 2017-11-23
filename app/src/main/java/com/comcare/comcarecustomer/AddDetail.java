@@ -13,7 +13,6 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
-import com.comcare.comcarecustomer.Models.test;
 
 public class AddDetail extends AppCompatActivity {
 
@@ -98,7 +97,7 @@ public class AddDetail extends AppCompatActivity {
                         Dialog("\n- คำอธิบายเพิ่มเติม");
                     }
                 } else {
-                    Intent intent = new Intent(getApplication(), test.class);
+                    Intent intent = new Intent(getApplication(), SumDetail.class);
                     intent.putExtra("edt1", edt1.getText().toString());
                     intent.putExtra("edt2", edt2.getText().toString());
 
@@ -128,6 +127,7 @@ public class AddDetail extends AppCompatActivity {
                         intent.putExtra("edt1", edt1.getText().toString());
                         intent.putExtra("edt2", edt2.getText().toString());
                     }
+                    startActivity(intent);
 
                 }
 
