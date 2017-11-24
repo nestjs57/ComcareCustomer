@@ -1,4 +1,4 @@
-package com.comcare.comcarecustomer;
+package com.comcare.comcarecustomer.Fragments;
 
 
 import android.Manifest;
@@ -14,7 +14,9 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.comcare.comcarecustomer.AddDetail;
 import com.comcare.comcarecustomer.Models.MarkerModel;
+import com.comcare.comcarecustomer.R;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.location.LocationListener;
 import com.google.android.gms.location.LocationRequest;

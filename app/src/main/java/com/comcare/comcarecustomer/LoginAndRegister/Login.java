@@ -1,4 +1,4 @@
-package com.comcare.comcarecustomer;
+package com.comcare.comcarecustomer.LoginAndRegister;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
@@ -10,6 +10,8 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.comcare.comcarecustomer.MainActivity;
+import com.comcare.comcarecustomer.R;
 import com.facebook.AccessToken;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
