@@ -1,5 +1,6 @@
 package com.comcare.comcarecustomer.Maps;
 
+import android.content.Context;
 import android.content.Intent;
 import android.location.Location;
 import android.renderscript.ScriptIntrinsicYuvToRGB;
@@ -30,6 +31,8 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.maps.model.MarkerOptions;
+
+import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
 public class AddLocation extends AppCompatActivity implements GoogleMap.OnMyLocationButtonClickListener,
         GoogleMap.OnMyLocationClickListener,
@@ -101,7 +104,11 @@ public class AddLocation extends AppCompatActivity implements GoogleMap.OnMyLoca
         });
 
 
+    }
 
+    @Override
+    protected void attachBaseContext(Context base) {
+        super.attachBaseContext(CalligraphyContextWrapper.wrap(base));
     }
 
     @Override
@@ -146,11 +153,6 @@ public class AddLocation extends AppCompatActivity implements GoogleMap.OnMyLoca
                 //Toast.makeText(getApplicationContext(), status.toString(), Toast.LENGTH_LONG).show();
             }
         }
-
-
-
-
-
     }
 
     @Override

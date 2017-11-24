@@ -1,5 +1,6 @@
 package com.comcare.comcarecustomer;
 
+import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
@@ -8,6 +9,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
 public class SumDetail extends AppCompatActivity {
 
@@ -27,6 +30,12 @@ public class SumDetail extends AppCompatActivity {
         bindWidget();
         getStringIntent();
     }
+
+    @Override
+    protected void attachBaseContext(Context base) {
+        super.attachBaseContext(CalligraphyContextWrapper.wrap(base));
+    }
+
 
     private void getStringIntent() {
         Intent intent = getIntent();

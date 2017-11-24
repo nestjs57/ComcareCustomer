@@ -58,16 +58,16 @@
         tools:context="com.example.mapwithmarker.MapsMarkerActivity" />
 
     <Button
-        android:id="@+id/button5"
+        android:id="@+id/okButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginRight="30dp"
-        android:layout_marginLeft="30dp"
         android:layout_alignBottom="@+id/mMap"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="38dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
         android:background="#4153b5"
-        android:textColor="#fff"
-        android:text="ตกลง" />
+        android:text="ตกลง"
+        android:textColor="#fff" />
 
 </RelativeLayout>

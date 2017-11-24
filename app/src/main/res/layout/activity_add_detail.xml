@@ -151,12 +151,13 @@
 
 
         <LinearLayout
+            android:id="@+id/linearClick"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:orientation="horizontal"
             android:layout_marginTop="15dp"
-            android:padding="10dp"
-            android:background="#fff">
+            android:background="#fff"
+            android:orientation="horizontal"
+            android:padding="10dp">
 
 
             <ImageView
@@ -182,10 +183,10 @@
                 android:id="@+id/imageView9"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
+                android:layout_gravity="center"
                 android:layout_weight="0"
-                app:srcCompat="@drawable/right_arrow"
                 android:padding="12dp"
-                android:layout_gravity="center"/>
+                app:srcCompat="@drawable/right_arrow" />
 
         </LinearLayout>
 
