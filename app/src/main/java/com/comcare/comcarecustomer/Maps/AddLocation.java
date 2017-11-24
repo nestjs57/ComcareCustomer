@@ -1,5 +1,6 @@
 package com.comcare.comcarecustomer.Maps;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.location.Location;
@@ -52,6 +53,7 @@ public class AddLocation extends AppCompatActivity implements GoogleMap.OnMyLoca
 
     private String latCur = "";
     private String lngCur = "";
+    private ProgressDialog progressDialog;
 
     //Maps
 
@@ -62,7 +64,7 @@ public class AddLocation extends AppCompatActivity implements GoogleMap.OnMyLoca
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_location);
 
-
+        progressDialog = new ProgressDialog(this);
         Intent intent = getIntent();
         latCur = intent.getStringExtra("latCur");
         lngCur = intent.getStringExtra("lngCur");
@@ -84,7 +86,8 @@ public class AddLocation extends AppCompatActivity implements GoogleMap.OnMyLoca
             public void onClick(View view) {
 
                 try {
-
+                    progressDialog.setMessage("รอสักครู่...");
+                    progressDialog.show();
                     AutocompleteFilter typeFilter = new AutocompleteFilter.Builder().
                             setTypeFilter(AutocompleteFilter.TYPE_FILTER_NONE).build();
 
@@ -125,6 +128,7 @@ public class AddLocation extends AppCompatActivity implements GoogleMap.OnMyLoca
         txt = (TextView) findViewById(R.id.textView10);
         if (requestCode == PLACE_AUTOCOMPLETE_REQUEST_CODE) {
             if (resultCode == RESULT_OK) {
+                progressDialog.dismiss();
                 Place place = PlaceAutocomplete.getPlace(this, data);
                 String address_choose = String.valueOf(place.getAddress());
                 String lat_choose = String.valueOf(place.getLatLng().latitude);

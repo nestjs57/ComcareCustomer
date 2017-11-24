@@ -29,7 +29,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:name=".CustomFont">
+
         <!--android:name="android.support.multidex.MultiDexApplication"-->
+
         <meta-data
              android:name="com.facebook.sdk.ApplicationId"
             android:value="@string/facebook_app_id" />
