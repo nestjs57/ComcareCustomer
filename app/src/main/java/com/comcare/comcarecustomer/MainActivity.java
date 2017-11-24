@@ -223,17 +223,13 @@ public class MainActivity extends AppCompatActivity
 
         if (id == R.id.nav_camera) {
             // Handle the camera action
-        } else if (id == R.id.nav_gallery) {
-            Toast.makeText(MainActivity.this, "nav_gallery", Toast.LENGTH_LONG).show();
+
 
         } else if (id == R.id.nav_slideshow) {
             Toast.makeText(MainActivity.this, "nav_slideshow", Toast.LENGTH_LONG).show();
 
         } else if (id == R.id.nav_manage) {
             Toast.makeText(MainActivity.this, "nav_manage", Toast.LENGTH_LONG).show();
-
-        } else if (id == R.id.nav_share) {
-            Toast.makeText(MainActivity.this, "nav_share", Toast.LENGTH_LONG).show();
 
         } else if (id == R.id.nav_send) {
             Toast.makeText(MainActivity.this, "nav_send", Toast.LENGTH_LONG).show();
