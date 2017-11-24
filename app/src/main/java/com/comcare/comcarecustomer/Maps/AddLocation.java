@@ -1,6 +1,9 @@
 package com.comcare.comcarecustomer.Maps;
 
 import android.content.Intent;
+import android.location.Location;
+import android.support.annotation.NonNull;
+import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.ClipboardManager;
@@ -19,10 +22,14 @@ import com.google.android.gms.location.places.AutocompleteFilter;
 import com.google.android.gms.location.places.Place;
 import com.google.android.gms.location.places.ui.PlaceAutocomplete;
 import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
-public class AddLocation extends AppCompatActivity {
+public class AddLocation extends AppCompatActivity implements GoogleMap.OnMyLocationButtonClickListener,
+        GoogleMap.OnMyLocationClickListener,
+        OnMapReadyCallback {
 
     private LinearLayout linearLayout;
     private static final int REQUEST_LOCATION = 1;
@@ -109,9 +116,33 @@ public class AddLocation extends AppCompatActivity {
 
     }
 
+    @Override
+    public boolean onMyLocationButtonClick() {
+        return false;
+    }
+
+    @Override
+    public void onMyLocationClick(@NonNull Location location) {
+
+    }
+
+    @Override
+    public void onMapReady(GoogleMap googleMap) {
+        mMapView = googleMap;
+        android.app.FragmentManager fragmentMgr = getFragmentManager();
+        SupportMapFragment mMapViewFragment = (SupportMapFragment) this.getSupportFragmentManager().findFragmentById(R.id.mMap);
+        mMapViewFragment.getMapAsync(this);
 
 
-        //zoomAllMarkers();
+    }
+
+    @Override
+    public void onPointerCaptureChanged(boolean hasCapture) {
+
+    }
+
+
+    //zoomAllMarkers();
 
 
 }

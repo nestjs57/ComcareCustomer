@@ -13,6 +13,7 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
+import com.comcare.comcarecustomer.Models.test;
 
 
 public class AddDetail extends AppCompatActivity {
@@ -105,31 +106,39 @@ public class AddDetail extends AppCompatActivity {
                     if (btn4 == true) {
                         intent.putExtra("edt1", edt1.getText().toString());
                         intent.putExtra("edt2", edt2.getText().toString());
-                        intent.putExtra("img1", btnStr4);
-                        intent.putExtra("img2", btnStr3);
+                        intent.putExtra("img1", btnStr1);
+                        intent.putExtra("img2", btnStr2);
                         intent.putExtra("img3", btnStr3);
                         intent.putExtra("img4", btnStr4);
+                        intent.putExtra("chkImg","4");
                     } else if (btn3 == true) {
                         intent.putExtra("edt1", edt1.getText().toString());
                         intent.putExtra("edt2", edt2.getText().toString());
-                        intent.putExtra("img1", btnStr4);
-                        intent.putExtra("img2", btnStr3);
+                        intent.putExtra("img1", btnStr1);
+                        intent.putExtra("img2", btnStr2);
                         intent.putExtra("img3", btnStr3);
+                        intent.putExtra("chkImg","3");
+
                     } else if (btn2 == true) {
                         intent.putExtra("edt1", edt1.getText().toString());
                         intent.putExtra("edt2", edt2.getText().toString());
-                        intent.putExtra("img1", btnStr4);
-                        intent.putExtra("img2", btnStr3);
+                        intent.putExtra("img1", btnStr1);
+                        intent.putExtra("img2", btnStr2);
+                        intent.putExtra("chkImg","2");
+
                     } else if (btn1 == true) {
                         intent.putExtra("edt1", edt1.getText().toString());
                         intent.putExtra("edt2", edt2.getText().toString());
-                        intent.putExtra("img1", btnStr4);
+                        intent.putExtra("img1", btnStr1);
+                        intent.putExtra("chkImg","1");
+
                     } else {
                         intent.putExtra("edt1", edt1.getText().toString());
                         intent.putExtra("edt2", edt2.getText().toString());
+                        intent.putExtra("chkImg","0");
+
                     }
                     startActivity(intent);
-
                 }
 
 

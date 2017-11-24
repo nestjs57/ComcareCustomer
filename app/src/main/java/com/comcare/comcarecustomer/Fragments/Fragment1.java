@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.location.Location;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.view.LayoutInflater;
@@ -55,6 +56,7 @@ public class Fragment1 extends Fragment implements GoogleMap.OnMyLocationButtonC
 
     private ArrayList<MarkerModel> dataset;
     private Button btnRequese;
+
     public Fragment1() {
         // Required empty public constructor
     }
@@ -77,20 +79,18 @@ public class Fragment1 extends Fragment implements GoogleMap.OnMyLocationButtonC
         btnRequese.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getActivity(),AddDetail.class);
+                Intent intent = new Intent(getActivity(), AddDetail.class);
                 startActivity(intent);
             }
         });
     }
 
     private void bindWidgetMap(View v) {
-//        FragmentManager fragmentMgr = getFragmentManager();
-//        SupportMapFragment mMapViewFragment = (SupportMapFragment) this.getChildFragmentManager().findFragmentById(R.id.mMap);
-//        mMapViewFragment.getMapAsync(this);
+        FragmentManager fragmentMgr = getFragmentManager();
+        SupportMapFragment mMapViewFragment = (SupportMapFragment) this.getChildFragmentManager().findFragmentById(R.id.mMap);
+        mMapViewFragment.getMapAsync(this);
 
-        FragmentManager fragmentManager = getFragmentManager();
-        SupportMapFragment mapFragment = (SupportMapFragment) this.getChildFragmentManager().findFragmentById(R.id.mMap);
-        mapFragment.getMapAsync(this);
+
     }
 
     @Override
@@ -114,13 +114,13 @@ public class Fragment1 extends Fragment implements GoogleMap.OnMyLocationButtonC
 
         addDunmyData();
         for (int i = 0; i < dataset.size(); i++) {
-            addMarker(dataset.get(i).getLat(),dataset.get(i).getLng(),dataset.get(i).getTxt());
+            addMarker(dataset.get(i).getLat(), dataset.get(i).getLng(), dataset.get(i).getTxt());
         }
 
 
     }
 
-    private void addMarker(double lat,double lng , String text) {
+    private void addMarker(double lat, double lng, String text) {
 
         LatLng latLng = new LatLng(lat, lng);
         MarkerOptions markerOption = new MarkerOptions();
@@ -134,7 +134,7 @@ public class Fragment1 extends Fragment implements GoogleMap.OnMyLocationButtonC
         dataset.add(new MarkerModel(12.651319, 99.859887, "พรภวิษย์ บัวบาน"));
         dataset.add(new MarkerModel(12.651933, 99.863304, "อรรถชัยว์ สว่าง"));
         dataset.add(new MarkerModel(12.653897, 99.864269, "สักสิท จันทรา"));
-        dataset.add(new MarkerModel(12.652023, 99.860417,"ศุทธิพงศ์ เสวนา"));
+        dataset.add(new MarkerModel(12.652023, 99.860417, "ศุทธิพงศ์ เสวนา"));
     }
 
 
@@ -150,6 +150,8 @@ public class Fragment1 extends Fragment implements GoogleMap.OnMyLocationButtonC
 
             }
         });
+
+
     }
 
     // End of Utility
@@ -165,7 +167,8 @@ public class Fragment1 extends Fragment implements GoogleMap.OnMyLocationButtonC
                         // get last location
                         try {
                             getLastLocation();
-                        }catch (Exception e){}
+                        } catch (Exception e) {
+                        }
 
                         // set request
                         mRequest = LocationRequest.create();
@@ -179,6 +182,7 @@ public class Fragment1 extends Fragment implements GoogleMap.OnMyLocationButtonC
                             }
                         });
                     }
+
                     @Override
                     public void onConnectionSuspended(int i) {
                         Toast.makeText(getActivity(), "Connection is susppended!", Toast.LENGTH_LONG).show();
@@ -187,6 +191,7 @@ public class Fragment1 extends Fragment implements GoogleMap.OnMyLocationButtonC
 
         mApiClient.connect();
 
+
     }
 
     public void animateToDefaultLocation() {
@@ -194,11 +199,13 @@ public class Fragment1 extends Fragment implements GoogleMap.OnMyLocationButtonC
             defaultLocation = convertToLatLng(getLastLocation());
             mMapView.animateCamera(CameraUpdateFactory.newLatLngZoom(defaultLocation, 15));
         }
+
+
     }
 
     public LatLng convertToLatLng(Location location) {
 
-        latCur =  location.getLatitude();
+        latCur = location.getLatitude();
         lngCur = location.getLongitude();
         return new LatLng(location.getLatitude(), location.getLongitude());
 
@@ -213,6 +220,7 @@ public class Fragment1 extends Fragment implements GoogleMap.OnMyLocationButtonC
         }
         return location;
     }
+
 
     private void radiusCenter(Location location) {
 //        Circle circle = mMapView.addCircle(new CircleOptions()
