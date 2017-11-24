@@ -5,6 +5,9 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.view.View;
+import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.facebook.AccessToken;
@@ -30,12 +33,16 @@ public class Login extends Activity {
     private FirebaseAuth mAuth;
     private CallbackManager callbackManager;
     private ProgressDialog mProgressDialog;
+    private TextView txtLogin;
+    private Button btnMailRegister;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
+        setEvent();
 
         mAuth = FirebaseAuth.getInstance();
         mProgressDialog = new ProgressDialog(this);
@@ -140,6 +147,28 @@ public class Login extends Activity {
                         // [END_EXCLUDE]
                     }
                 });
+    }
+    private void setEvent(){
+
+        txtLogin = (TextView) findViewById(R.id.txtLogin);
+        btnMailRegister = (Button) findViewById(R.id.button2);
+
+        txtLogin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplication(), EmailLogin.class);
+                startActivity(intent);
+            }
+        });
+
+        btnMailRegister.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplication(), EmailRegister.class);
+                startActivity(intent);
+            }
+        });
+
     }
 
 
