@@ -172,10 +172,10 @@
                 android:id="@+id/textView10"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="0"
-                android:text="เลือกที่อยู่ปัจจุบันของคุณ"
                 android:layout_gravity="center_vertical"
-                android:textColor="#4153b5"/>
+                android:layout_weight="1"
+                android:text="เลือกที่อยู่ปัจจุบันของคุณ"
+                android:textColor="#4153b5" />
 
 
             <ImageView
