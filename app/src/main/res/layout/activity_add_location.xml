@@ -10,11 +10,11 @@
     <LinearLayout
         android:id="@+id/linearLayout"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:orientation="horizontal"
-        android:padding="10dp"
+        android:layout_height="wrap_content"
         android:background="#fff"
-        android:clickable="true">
+        android:clickable="true"
+        android:orientation="horizontal"
+        android:padding="5dp">
 
 
         <ImageView
@@ -40,10 +40,10 @@
             android:id="@+id/imageView9"
             android:layout_width="50dp"
             android:layout_height="50dp"
+            android:layout_gravity="center"
             android:layout_weight="0"
-            app:srcCompat="@drawable/right_arrow"
             android:padding="12dp"
-            android:layout_gravity="center"/>
+            app:srcCompat="@drawable/right_arrow" />
 
     </LinearLayout>
 

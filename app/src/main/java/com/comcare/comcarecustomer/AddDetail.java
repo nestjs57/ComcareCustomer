@@ -6,14 +6,18 @@ import android.net.Uri;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
+import com.comcare.comcarecustomer.Maps.AddLocation;
 import com.comcare.comcarecustomer.Models.test;
+import com.google.android.gms.vision.text.Line;
 
 
 public class AddDetail extends AppCompatActivity {
@@ -26,6 +30,7 @@ public class AddDetail extends AppCompatActivity {
     private Button btnNext;
     private EditText edt1;
     private EditText edt2;
+    private LinearLayout linearClick;
 
     private Boolean btn1 = false;
     private Boolean btn2 = false;
@@ -37,6 +42,8 @@ public class AddDetail extends AppCompatActivity {
     private String btnStr4 = "";
 
 
+    private String latCur = "";
+    private String lngCur = "";
     //
     private static final int GALLERY_REQUEST = 1;
     private Uri mImageUri = null;
@@ -46,11 +53,38 @@ public class AddDetail extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_detail);
 
+        if (getSupportActionBar()!=null){
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+            getSupportActionBar().setDisplayShowHomeEnabled(true);
+        }
+
+        Intent intent = getIntent();
+        latCur = intent.getStringExtra("latCur");
+        lngCur = intent.getStringExtra("lngCur");
+        Toast.makeText(AddDetail.this, latCur, Toast.LENGTH_LONG).show();
         bindWidget();
         setEvent();
     }
 
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId()==android.R.id.home)
+            finish();
+        return super.onOptionsItemSelected(item);
+    }
+
+
     private void setEvent() {
+
+        linearClick.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplication(), AddLocation.class);
+                intent.putExtra("latCur",latCur);
+                intent.putExtra("lngCur",lngCur);
+                startActivityForResult(intent,2);
+            }
+        });
 
         btnImage1.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -166,6 +200,7 @@ public class AddDetail extends AppCompatActivity {
         btnImage4 = (ImageButton) findViewById(R.id.btnImage4);
         edt1 = (EditText) findViewById(R.id.edt1);
         edt2 = (EditText) findViewById(R.id.edt2);
+        linearClick = (LinearLayout) findViewById(R.id.linearClick);
         btnNext = (Button) findViewById(R.id.btnNext);
     }
 

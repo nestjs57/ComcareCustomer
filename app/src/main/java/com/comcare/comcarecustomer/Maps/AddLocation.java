@@ -2,11 +2,13 @@ package com.comcare.comcarecustomer.Maps;
 
 import android.content.Intent;
 import android.location.Location;
+import android.renderscript.ScriptIntrinsicYuvToRGB;
 import android.support.annotation.NonNull;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.ClipboardManager;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -21,10 +23,12 @@ import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.places.AutocompleteFilter;
 import com.google.android.gms.location.places.Place;
 import com.google.android.gms.location.places.ui.PlaceAutocomplete;
+import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 public class AddLocation extends AppCompatActivity implements GoogleMap.OnMyLocationButtonClickListener,
@@ -43,6 +47,9 @@ public class AddLocation extends AppCompatActivity implements GoogleMap.OnMyLoca
     private static final int REQUEST_CC = 100;
     private TextView txt;
 
+    private String latCur = "";
+    private String lngCur = "";
+
     //Maps
 
 
@@ -51,6 +58,23 @@ public class AddLocation extends AppCompatActivity implements GoogleMap.OnMyLoca
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_location);
+
+
+        Intent intent = getIntent();
+        latCur = intent.getStringExtra("latCur");
+        lngCur = intent.getStringExtra("lngCur");
+        Toast.makeText(AddLocation.this, latCur, Toast.LENGTH_LONG).show();
+
+        if (getSupportActionBar()!=null){
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+            getSupportActionBar().setDisplayShowHomeEnabled(true);
+        }
+
+        android.app.FragmentManager fragmentMgr = getFragmentManager();
+        SupportMapFragment mMapViewFragment = (SupportMapFragment) this.getSupportFragmentManager().findFragmentById(R.id.mMap);
+        mMapViewFragment.getMapAsync(this);
+
+
         linearLayout = (LinearLayout) findViewById(R.id.linearLayout);
         linearLayout.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -80,6 +104,12 @@ public class AddLocation extends AppCompatActivity implements GoogleMap.OnMyLoca
 
     }
 
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId()==android.R.id.home)
+            finish();
+        return super.onOptionsItemSelected(item);
+    }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -94,6 +124,13 @@ public class AddLocation extends AppCompatActivity implements GoogleMap.OnMyLoca
                 String lng_choose = String.valueOf(place.getLatLng().longitude);
 
                 LatLng latLng = new LatLng(place.getLatLng().latitude, place.getLatLng().longitude);
+
+                mMapView.clear();
+                mMapView.addMarker(new MarkerOptions()
+                        .position(new LatLng(Double.parseDouble(lat_choose), Double.parseDouble(lng_choose)))
+                );
+
+                mMapView.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(Double.parseDouble(lat_choose), Double.parseDouble(lng_choose)), 15.0f));
 
 //                MarkerOptions markerOption = new MarkerOptions();
 //                markerOption.position(latLng);
@@ -129,10 +166,11 @@ public class AddLocation extends AppCompatActivity implements GoogleMap.OnMyLoca
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMapView = googleMap;
-        android.app.FragmentManager fragmentMgr = getFragmentManager();
-        SupportMapFragment mMapViewFragment = (SupportMapFragment) this.getSupportFragmentManager().findFragmentById(R.id.mMap);
-        mMapViewFragment.getMapAsync(this);
+        mMapView.addMarker(new MarkerOptions()
+                .position(new LatLng(Double.parseDouble(latCur), Double.parseDouble(lngCur)))
+        );
 
+        mMapView.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(Double.parseDouble(latCur), Double.parseDouble(lngCur)), 15.0f));
 
     }
 
