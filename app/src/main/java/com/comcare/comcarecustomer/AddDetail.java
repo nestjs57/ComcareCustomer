@@ -1,15 +1,13 @@
 package com.comcare.comcarecustomer;
 
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
+import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -17,15 +15,6 @@ import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.comcare.comcarecustomer.Maps.AddLocation;
-
-import com.google.android.gms.vision.text.Line;
-import com.comcare.comcarecustomer.Maps.AddLocation;
-import com.google.android.gms.common.api.Status;
-import com.google.android.gms.location.places.Place;
-import com.google.android.gms.location.places.ui.PlaceAutocomplete;
-import com.google.android.gms.maps.model.LatLng;
-
-import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
 
 public class AddDetail extends AppCompatActivity {
@@ -48,8 +37,6 @@ public class AddDetail extends AppCompatActivity {
     private String btnStr2 = "";
     private String btnStr3 = "";
     private String btnStr4 = "";
-
-    private Intent intent;
 
 
     private String latCur = "";
@@ -75,12 +62,6 @@ public class AddDetail extends AppCompatActivity {
         bindWidget();
         setEvent();
     }
-
-    @Override
-    protected void attachBaseContext(Context base) {
-        super.attachBaseContext(CalligraphyContextWrapper.wrap(base));
-    }
-
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
