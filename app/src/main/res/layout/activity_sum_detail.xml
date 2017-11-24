@@ -110,6 +110,37 @@
             </LinearLayout>
         </HorizontalScrollView>
 
+        <TextView
+            android:id="@+id/textview8"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="ที่อยู่และการติดต่อ"
+            android:textColor="#4153b5"
+            android:textStyle="bold"
+            android:textSize="16dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginBottom="5dp"/>
+
+
+        <TextView
+            android:id="@+id/textView13"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:layout_marginTop="5dp"
+            android:maxLength="168"
+            android:text="30 ราษฏร์บูรณะ แขวงบางปะกอก กรุงเทพ 10140"
+            android:textColor="#333" />
+
+        <TextView
+            android:id="@+id/textView12"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+
+            android:maxLength="168"
+            android:text="0936231991"
+            android:textColor="#333" />
 
         <Button
             android:id="@+id/button3"
@@ -117,7 +148,7 @@
             android:layout_height="50dp"
             android:layout_marginLeft="25dp"
             android:layout_marginRight="25dp"
-            android:layout_marginTop="60dp"
+            android:layout_marginTop="30dp"
             android:background="@color/colorPrimary"
             android:text="ยืนยัน"
             android:textColor="#fff"

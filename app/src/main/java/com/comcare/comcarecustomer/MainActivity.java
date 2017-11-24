@@ -23,6 +23,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.comcare.comcarecustomer.Fragments.Fragment1;
+import com.comcare.comcarecustomer.Fragments.Fragment2;
+import com.comcare.comcarecustomer.Fragments.Fragment3;
+import com.comcare.comcarecustomer.LoginAndRegister.Login;
 import com.facebook.login.LoginManager;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
