@@ -160,25 +160,23 @@
 
 
             <ImageView
-                android:layout_gravity="center"
                 android:id="@+id/imageView8"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
-                android:layout_weight="0"
-                app:srcCompat="@drawable/map_mark"
-                android:padding="10dp"/>
-
-            <Button
                 android:layout_gravity="center"
-                android:id="@+id/button5"
+                android:layout_weight="0"
+                android:padding="10dp"
+                app:srcCompat="@drawable/map_mark" />
+
+            <TextView
+                android:id="@+id/textView10"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:background="@android:color/transparent"
-                android:text="ที่อยู่ปัจจุบันของคุณ"
-                android:gravity="center_vertical"
-                android:paddingLeft="15dp"
+                android:layout_weight="0"
+                android:text="เลือกที่อยู่ปัจจุบันของคุณ"
+                android:layout_gravity="center_vertical"
                 android:textColor="#4153b5"/>
+
 
             <ImageView
                 android:id="@+id/imageView9"
