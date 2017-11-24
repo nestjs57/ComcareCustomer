@@ -12,6 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
+
         <TextView
             android:id="@+id/textView1"
             android:layout_width="match_parent"
@@ -138,6 +139,90 @@
 
             </LinearLayout>
         </HorizontalScrollView>
+        <TextView
+            android:id="@+id/textview4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:layout_marginTop="15dp"
+            android:text="ที่อยู่และการติดต่อ"
+            android:textColor="#333"
+            android:textSize="16dp" />
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:orientation="horizontal"
+            android:layout_marginTop="15dp"
+            android:padding="10dp"
+            android:background="#fff">
+
+
+            <ImageView
+                android:layout_gravity="center"
+                android:id="@+id/imageView8"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_weight="0"
+                app:srcCompat="@drawable/map_mark"
+                android:padding="10dp"/>
+
+            <Button
+                android:layout_gravity="center"
+                android:id="@+id/button5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@android:color/transparent"
+                android:text="ที่อยู่ปัจจุบันของคุณ"
+                android:gravity="center_vertical"
+                android:paddingLeft="15dp"
+                android:textColor="#4153b5"/>
+
+            <ImageView
+                android:id="@+id/imageView9"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_weight="0"
+                app:srcCompat="@drawable/right_arrow"
+                android:padding="12dp"
+                android:layout_gravity="center"/>
+
+        </LinearLayout>
+
+        <EditText
+            android:id="@+id/edt3"
+            android:layout_width="match_parent"
+            android:layout_height="90dp"
+            android:layout_marginBottom="5dp"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/meterial_ph_white"
+            android:ems="10"
+            android:gravity="top"
+            android:hint="บ้านเลขที่ อาคาร ซอย"
+            android:inputType="textMultiLine"
+            android:maxHeight="120dp"
+            android:maxLength="168"
+            android:padding="10dp"
+            android:textColor="#333"
+            android:textSize="14sp" />
+
+        <EditText
+            android:id="@+id/edt5"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:layout_marginTop="1dp"
+            android:background="@drawable/meterial_ph_white"
+            android:hint="เบอร์โทร"
+            android:maxLength="38"
+            android:maxLines="1"
+            android:padding="10dp"
+            android:textColor="#333"
+            android:textSize="14sp"
+            android:inputType="number"/>
+
 
         <Button
             android:id="@+id/btnNext"
