@@ -3,6 +3,8 @@ package com.comcare.comcarecustomer.Maps;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.location.Address;
+import android.location.Geocoder;
 import android.location.Location;
 import android.renderscript.ScriptIntrinsicYuvToRGB;
 import android.support.annotation.NonNull;
@@ -12,6 +14,7 @@ import android.os.Bundle;
 import android.text.ClipboardManager;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -32,6 +35,9 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.maps.model.MarkerOptions;
+
+import java.util.List;
+import java.util.Locale;
 
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
@@ -55,8 +61,14 @@ public class AddLocation extends AppCompatActivity implements GoogleMap.OnMyLoca
     private String lngCur = "";
     private ProgressDialog progressDialog;
 
-    //Maps
+    private Button okButton;
+    private String address_choose;
+    private String lat_choose;
+    private String lng_choose;
+    Geocoder geocoder;
+    List<Address> addresses;
 
+    //Maps
 
 
     @Override
@@ -65,26 +77,49 @@ public class AddLocation extends AppCompatActivity implements GoogleMap.OnMyLoca
         setContentView(R.layout.activity_add_location);
 
         progressDialog = new ProgressDialog(this);
+
+        geocoder = new Geocoder(this, Locale.getDefault());
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+            getSupportActionBar().setDisplayShowHomeEnabled(true);
+        }
+        getIntents();
+        intentMap();
+        bindWidjet();
+        bindWidjetMap();
+
+
+
+    }
+
+    private void bindWidjet() {
+        okButton = (Button) findViewById(R.id.okButton);
+        okButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent();
+                intent.putExtra("address",address_choose);
+                intent.putExtra("lat",lat_choose);
+                intent.putExtra("lng",lng_choose);
+                setResult(RESULT_OK, intent);
+                finish();
+            }
+        });
+    }
+
+    private void getIntents() {
         Intent intent = getIntent();
         latCur = intent.getStringExtra("latCur");
         lngCur = intent.getStringExtra("lngCur");
         Toast.makeText(AddLocation.this, latCur, Toast.LENGTH_LONG).show();
 
-        if (getSupportActionBar()!=null){
-            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-            getSupportActionBar().setDisplayShowHomeEnabled(true);
-        }
+    }
 
-        android.app.FragmentManager fragmentMgr = getFragmentManager();
-        SupportMapFragment mMapViewFragment = (SupportMapFragment) this.getSupportFragmentManager().findFragmentById(R.id.mMap);
-        mMapViewFragment.getMapAsync(this);
-
-
+    private void intentMap() {
         linearLayout = (LinearLayout) findViewById(R.id.linearLayout);
         linearLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
                 try {
                     progressDialog.setMessage("รอสักครู่...");
                     progressDialog.show();
@@ -106,6 +141,12 @@ public class AddLocation extends AppCompatActivity implements GoogleMap.OnMyLoca
             }
         });
 
+    }
+
+    private void bindWidjetMap() {
+        android.app.FragmentManager fragmentMgr = getFragmentManager();
+        SupportMapFragment mMapViewFragment = (SupportMapFragment) this.getSupportFragmentManager().findFragmentById(R.id.mMap);
+        mMapViewFragment.getMapAsync(this);
 
     }
 
@@ -116,7 +157,7 @@ public class AddLocation extends AppCompatActivity implements GoogleMap.OnMyLoca
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        if (item.getItemId()==android.R.id.home)
+        if (item.getItemId() == android.R.id.home)
             finish();
         return super.onOptionsItemSelected(item);
     }
@@ -124,15 +165,15 @@ public class AddLocation extends AppCompatActivity implements GoogleMap.OnMyLoca
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-
+        progressDialog.dismiss();
         txt = (TextView) findViewById(R.id.textView10);
         if (requestCode == PLACE_AUTOCOMPLETE_REQUEST_CODE) {
             if (resultCode == RESULT_OK) {
-                progressDialog.dismiss();
+
                 Place place = PlaceAutocomplete.getPlace(this, data);
-                String address_choose = String.valueOf(place.getAddress());
-                String lat_choose = String.valueOf(place.getLatLng().latitude);
-                String lng_choose = String.valueOf(place.getLatLng().longitude);
+                address_choose = String.valueOf(place.getAddress());
+                lat_choose = String.valueOf(place.getLatLng().latitude);
+                lng_choose = String.valueOf(place.getLatLng().longitude);
 
                 LatLng latLng = new LatLng(place.getLatLng().latitude, place.getLatLng().longitude);
 

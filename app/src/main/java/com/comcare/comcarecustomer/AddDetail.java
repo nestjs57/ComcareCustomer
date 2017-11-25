@@ -1,7 +1,10 @@
 package com.comcare.comcarecustomer;
 
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.location.Address;
+import android.location.Geocoder;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
@@ -12,9 +15,16 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.comcare.comcarecustomer.Maps.AddLocation;
+
+import java.io.IOException;
+import java.util.List;
+import java.util.Locale;
+
+import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
 
 public class AddDetail extends AppCompatActivity {
@@ -44,6 +54,13 @@ public class AddDetail extends AppCompatActivity {
     //
     private static final int GALLERY_REQUEST = 1;
     private Uri mImageUri = null;
+    private String add_choose;
+    private String lat_choose;
+    private String lng_choose;
+
+    private TextView textView;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,7 +78,23 @@ public class AddDetail extends AppCompatActivity {
         Toast.makeText(AddDetail.this, latCur, Toast.LENGTH_LONG).show();
         bindWidget();
         setEvent();
+
+        Geocoder geocoder = new Geocoder(this, Locale.getDefault());
+
+        try {
+            List<Address> addresses  = geocoder.getFromLocation(Double.parseDouble(latCur),Double.parseDouble(lngCur), 1);
+            String address = addresses.get(0).getAddressLine(0);
+            textView.setText(address+"");
+        } catch (Exception e) {
+
+        }
     }
+
+    @Override
+    protected void attachBaseContext(Context base) {
+        super.attachBaseContext(CalligraphyContextWrapper.wrap(base));
+    }
+
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -199,6 +232,7 @@ public class AddDetail extends AppCompatActivity {
         edt2 = (EditText) findViewById(R.id.edt2);
         linearClick = (LinearLayout) findViewById(R.id.linearClick);
         btnNext = (Button) findViewById(R.id.btnNext);
+        textView = (TextView) findViewById(R.id.txtAddress);
     }
 
     @Override
@@ -233,6 +267,12 @@ public class AddDetail extends AppCompatActivity {
             }
 
 
+        }else  if (requestCode == 2 && resultCode == RESULT_OK) {
+
+            add_choose = data.getStringExtra("address");
+            lat_choose = data.getStringExtra("lat");
+            lng_choose = data.getStringExtra("lng");
+            textView.setText(add_choose);
         }
     }
 }

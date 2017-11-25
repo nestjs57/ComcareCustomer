@@ -2,6 +2,7 @@ package com.comcare.comcarecustomer.Fragments;
 
 
 import android.Manifest;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Color;
 import android.location.Location;
@@ -65,6 +66,8 @@ public class Fragment1 extends Fragment implements GoogleMap.OnMyLocationButtonC
     private String lat = "";
     private String lng = "";
 
+    private ProgressDialog progressDialog;
+
     public Fragment1() {
         // Required empty public constructor
     }
@@ -76,6 +79,10 @@ public class Fragment1 extends Fragment implements GoogleMap.OnMyLocationButtonC
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_fragment1, container, false);
         dataset = new ArrayList<MarkerModel>();
+
+        progressDialog = new ProgressDialog(getActivity());
+        progressDialog.setMessage("กำลังค้นหาที่อยู่ปัจจุบัน ...");
+        progressDialog.show();
 
         bindWidgetMap(v);
         setEvent(v);
@@ -107,6 +114,7 @@ public class Fragment1 extends Fragment implements GoogleMap.OnMyLocationButtonC
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMapView = googleMap;
+        progressDialog.dismiss();
         requestRealTimePermission();
 
         //12.651319, 99.859887
