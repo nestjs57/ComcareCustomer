@@ -11,16 +11,19 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.comcare.comcarecustomer.Maps.AddLocation;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
@@ -63,13 +66,15 @@ public class AddDetail extends AppCompatActivity {
     private String lng_choose;
 
     private TextView textView;
-
+    private Spinner spinner2;
+    private TextView ttt;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_detail);
+
 
         if (getSupportActionBar()!=null){
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -92,6 +97,15 @@ public class AddDetail extends AppCompatActivity {
         } catch (Exception e) {
 
         }
+
+        ttt = (TextView) findViewById(R.id.ttt);
+        ttt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(AddDetail.this,String.valueOf(spinner2.getSelectedItem()),
+                        Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     @Override
@@ -176,6 +190,7 @@ public class AddDetail extends AppCompatActivity {
                         intent.putExtra("edt2", edt2.getText().toString());
                         intent.putExtra("address1",txtAddress1.getText().toString());
                         intent.putExtra("address2",editTextAddress2.getText().toString());
+                        intent.putExtra("type",String.valueOf(spinner2.getSelectedItem()));
                         intent.putExtra("img1", btnStr1);
                         intent.putExtra("img2", btnStr2);
                         intent.putExtra("img3", btnStr3);
@@ -186,6 +201,7 @@ public class AddDetail extends AppCompatActivity {
                         intent.putExtra("edt2", edt2.getText().toString());
                         intent.putExtra("address1",txtAddress1.getText().toString());
                         intent.putExtra("address2",editTextAddress2.getText().toString());
+                        intent.putExtra("type",String.valueOf(spinner2.getSelectedItem()));
                         intent.putExtra("img1", btnStr1);
                         intent.putExtra("img2", btnStr2);
                         intent.putExtra("img3", btnStr3);
@@ -196,6 +212,7 @@ public class AddDetail extends AppCompatActivity {
                         intent.putExtra("edt2", edt2.getText().toString());
                         intent.putExtra("address1",txtAddress1.getText().toString());
                         intent.putExtra("address2",editTextAddress2.getText().toString());
+                        intent.putExtra("type",String.valueOf(spinner2.getSelectedItem()));
                         intent.putExtra("img1", btnStr1);
                         intent.putExtra("img2", btnStr2);
                         intent.putExtra("chkImg","2");
@@ -205,6 +222,7 @@ public class AddDetail extends AppCompatActivity {
                         intent.putExtra("edt2", edt2.getText().toString());
                         intent.putExtra("address1",txtAddress1.getText().toString());
                         intent.putExtra("address2",editTextAddress2.getText().toString());
+                        intent.putExtra("type",String.valueOf(spinner2.getSelectedItem()));
                         intent.putExtra("img1", btnStr1);
                         intent.putExtra("chkImg","1");
 
@@ -213,6 +231,7 @@ public class AddDetail extends AppCompatActivity {
                         intent.putExtra("edt2", edt2.getText().toString());
                         intent.putExtra("address1",txtAddress1.getText().toString());
                         intent.putExtra("address2",editTextAddress2.getText().toString());
+                        intent.putExtra("type",String.valueOf(spinner2.getSelectedItem()));
                         intent.putExtra("chkImg","0");
 
                     }
@@ -239,6 +258,18 @@ public class AddDetail extends AppCompatActivity {
     }
 
     private void bindWidget() {
+
+        spinner2 = (Spinner) findViewById(R.id.spinner);
+        List<String> list = new ArrayList<String>();
+        list.add("คอมพิวเตอร์");
+        list.add("โน๊ตบุ๊ค");
+        ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this,
+                android.R.layout.simple_spinner_item, list);
+        dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner2.setAdapter(dataAdapter);
+
+
+
 
         txtAddress1 = (TextView) findViewById(R.id.txtAddress1);
         editTextAddress2 = (EditText) findViewById(R.id.editTextAddress2);

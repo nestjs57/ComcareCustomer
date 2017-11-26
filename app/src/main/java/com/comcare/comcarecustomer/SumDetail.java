@@ -53,6 +53,7 @@ public class SumDetail extends AppCompatActivity {
     private ImageView img4;
     private TextView address1;
     private TextView address2;
+    private TextView type;
     private Button btnConfirm;
 
     private String chk;
@@ -379,6 +380,11 @@ public class SumDetail extends AppCompatActivity {
                                                             x.child("address2").setValue(address2.getText().toString());
                                                             x.child("problem1").setValue(txt1.getText().toString());
                                                             x.child("problem2").setValue(txt2.getText().toString());
+                                                            if (type.getText().toString().equals("คอมพิวเตอร์")){
+                                                                x.child("type").setValue("1");
+                                                            }else{
+                                                                x.child("type").setValue("2");
+                                                            }
                                                             x.child("Path_img1").setValue(path1);
                                                             x.child("Path_img2").setValue(path2);
                                                             x.child("Path_img3").setValue(path3);
@@ -468,6 +474,7 @@ public class SumDetail extends AppCompatActivity {
             txt2.setText(intent.getStringExtra("edt2"));
             address1.setText(intent.getStringExtra("address1"));
             address2.setText(intent.getStringExtra("address2"));
+            type.setText(intent.getStringExtra("type"));
             img1.setImageURI(Uri.parse(intent.getStringExtra("img1")));
             img2.setImageURI(Uri.parse(intent.getStringExtra("img2")));
             img3.setImageURI(Uri.parse(intent.getStringExtra("img3")));
@@ -482,6 +489,7 @@ public class SumDetail extends AppCompatActivity {
             txt2.setText(intent.getStringExtra("edt2"));
             address1.setText(intent.getStringExtra("address1"));
             address2.setText(intent.getStringExtra("address2"));
+            type.setText(intent.getStringExtra("type"));
             img1.setImageURI(Uri.parse(intent.getStringExtra("img1")));
             img2.setImageURI(Uri.parse(intent.getStringExtra("img2")));
             img3.setImageURI(Uri.parse(intent.getStringExtra("img3")));
@@ -494,6 +502,7 @@ public class SumDetail extends AppCompatActivity {
             txt2.setText(intent.getStringExtra("edt2"));
             address1.setText(intent.getStringExtra("address1"));
             address2.setText(intent.getStringExtra("address2"));
+            type.setText(intent.getStringExtra("type"));
             img1.setImageURI(Uri.parse(intent.getStringExtra("img1")));
             img2.setImageURI(Uri.parse(intent.getStringExtra("img2")));
             Simg1 = intent.getStringExtra("img1");
@@ -505,6 +514,7 @@ public class SumDetail extends AppCompatActivity {
             txt2.setText(intent.getStringExtra("edt2"));
             address1.setText(intent.getStringExtra("address1"));
             address2.setText(intent.getStringExtra("address2"));
+            type.setText(intent.getStringExtra("type"));
             img1.setImageURI(Uri.parse(intent.getStringExtra("img1")));
             Simg1 = intent.getStringExtra("img1");
             img2.setVisibility(View.INVISIBLE);
@@ -515,6 +525,7 @@ public class SumDetail extends AppCompatActivity {
             txt2.setText(intent.getStringExtra("edt2"));
             address1.setText(intent.getStringExtra("address1"));
             address2.setText(intent.getStringExtra("address2"));
+            type.setText(intent.getStringExtra("type"));
             img1.setVisibility(View.INVISIBLE);
             img2.setVisibility(View.INVISIBLE);
             img3.setVisibility(View.INVISIBLE);
@@ -527,6 +538,7 @@ public class SumDetail extends AppCompatActivity {
         txtTel = (TextView) findViewById(R.id.txtTel);
         txt1 = (TextView) findViewById(R.id.txt1);
         txt2 = (TextView) findViewById(R.id.txt2);
+        type = (TextView) findViewById(R.id.txtType);
         img1 = (ImageView) findViewById(R.id.img1);
         img2 = (ImageView) findViewById(R.id.img2);
         img3 = (ImageView) findViewById(R.id.img3);
