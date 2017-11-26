@@ -131,6 +131,10 @@ public class Login extends Activity {
                                 dbref.child("user").child(user.getUid()).child("info").child("l_name").setValue(l_name);
                                 dbref.child("user").child(user.getUid()).child("info").child("full_name").setValue(full_name);
                                 dbref.child("user").child(user.getUid()).child("info").child("profile_image").setValue(profile_image);
+                                dbref.child("user").child(user.getUid()).child("info").child("name").setValue("null");
+                                dbref.child("user").child(user.getUid()).child("info").child("lastname").setValue("null");
+                                dbref.child("user").child(user.getUid()).child("info").child("tel").setValue("null");
+
 
                             }
                             //Toast.makeText(login.this, "username & password Fail", Toast.LENGTH_SHORT).show();

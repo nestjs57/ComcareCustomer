@@ -37,6 +37,10 @@ public class AddDetail extends AppCompatActivity {
     private Button btnNext;
     private EditText edt1;
     private EditText edt2;
+
+
+    private TextView txtAddress1;
+    private EditText editTextAddress2;
     private LinearLayout linearClick;
 
     private Boolean btn1 = false;
@@ -164,12 +168,14 @@ public class AddDetail extends AppCompatActivity {
                     }
                 } else {
                     Intent intent = new Intent(getApplication(), SumDetail.class);
-                    intent.putExtra("edt1", edt1.getText().toString());
-                    intent.putExtra("edt2", edt2.getText().toString());
+                    //intent.putExtra("edt1", edt1.getText().toString());
+                    //intent.putExtra("edt2", edt2.getText().toString());
 
                     if (btn4 == true) {
                         intent.putExtra("edt1", edt1.getText().toString());
                         intent.putExtra("edt2", edt2.getText().toString());
+                        intent.putExtra("address1",txtAddress1.getText().toString());
+                        intent.putExtra("address2",editTextAddress2.getText().toString());
                         intent.putExtra("img1", btnStr1);
                         intent.putExtra("img2", btnStr2);
                         intent.putExtra("img3", btnStr3);
@@ -178,6 +184,8 @@ public class AddDetail extends AppCompatActivity {
                     } else if (btn3 == true) {
                         intent.putExtra("edt1", edt1.getText().toString());
                         intent.putExtra("edt2", edt2.getText().toString());
+                        intent.putExtra("address1",txtAddress1.getText().toString());
+                        intent.putExtra("address2",editTextAddress2.getText().toString());
                         intent.putExtra("img1", btnStr1);
                         intent.putExtra("img2", btnStr2);
                         intent.putExtra("img3", btnStr3);
@@ -186,6 +194,8 @@ public class AddDetail extends AppCompatActivity {
                     } else if (btn2 == true) {
                         intent.putExtra("edt1", edt1.getText().toString());
                         intent.putExtra("edt2", edt2.getText().toString());
+                        intent.putExtra("address1",txtAddress1.getText().toString());
+                        intent.putExtra("address2",editTextAddress2.getText().toString());
                         intent.putExtra("img1", btnStr1);
                         intent.putExtra("img2", btnStr2);
                         intent.putExtra("chkImg","2");
@@ -193,16 +203,21 @@ public class AddDetail extends AppCompatActivity {
                     } else if (btn1 == true) {
                         intent.putExtra("edt1", edt1.getText().toString());
                         intent.putExtra("edt2", edt2.getText().toString());
+                        intent.putExtra("address1",txtAddress1.getText().toString());
+                        intent.putExtra("address2",editTextAddress2.getText().toString());
                         intent.putExtra("img1", btnStr1);
                         intent.putExtra("chkImg","1");
 
                     } else {
                         intent.putExtra("edt1", edt1.getText().toString());
                         intent.putExtra("edt2", edt2.getText().toString());
+                        intent.putExtra("address1",txtAddress1.getText().toString());
+                        intent.putExtra("address2",editTextAddress2.getText().toString());
                         intent.putExtra("chkImg","0");
 
                     }
                     startActivity(intent);
+                    overridePendingTransition(R.anim.right_in, R.anim.left_out);
                 }
 
 
@@ -224,6 +239,9 @@ public class AddDetail extends AppCompatActivity {
     }
 
     private void bindWidget() {
+
+        txtAddress1 = (TextView) findViewById(R.id.txtAddress1);
+        editTextAddress2 = (EditText) findViewById(R.id.editTextAddress2);
         btnImage1 = (ImageButton) findViewById(R.id.btnImage1);
         btnImage2 = (ImageButton) findViewById(R.id.btnImage2);
         btnImage3 = (ImageButton) findViewById(R.id.btnImage3);
@@ -232,7 +250,7 @@ public class AddDetail extends AppCompatActivity {
         edt2 = (EditText) findViewById(R.id.edt2);
         linearClick = (LinearLayout) findViewById(R.id.linearClick);
         btnNext = (Button) findViewById(R.id.btnNext);
-        textView = (TextView) findViewById(R.id.txtAddress);
+        textView = (TextView) findViewById(R.id.txtAddress1);
     }
 
     @Override

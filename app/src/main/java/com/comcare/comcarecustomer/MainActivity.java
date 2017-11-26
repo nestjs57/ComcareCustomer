@@ -102,8 +102,13 @@ public class MainActivity extends AppCompatActivity
                         TextView full_name = (TextView) findViewById(R.id.txtEmail);
 
 
-                        full_name.setText(name);
-                        Glide.with(getApplication()).load(desc_ofPost).transform(new CircleTransform(getApplication())).into(profile);
+                        try {
+                            full_name.setText(name);
+                            Glide.with(getApplication()).load(desc_ofPost).transform(new CircleTransform(getApplication())).into(profile);
+
+                        }catch (Exception e){
+
+                        }
 
                         //full_name.setText(name);
                         //Glide.with(getApplication()).load(desc_ofPost).transform(new CircleTransform(getApplication())).into(profile);
