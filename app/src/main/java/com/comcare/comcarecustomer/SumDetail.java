@@ -431,7 +431,7 @@ public class SumDetail extends AppCompatActivity {
         database.child("user").child(auth.getCurrentUser().getUid().toString()).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                name = (String) dataSnapshot.child("info").child("name").getValue();
+                name = (String) dataSnapshot.child("info").child("full_name").getValue();
                 tel = (String) dataSnapshot.child("info").child("tel").getValue();
                 Toast.makeText(getApplicationContext(), name, Toast.LENGTH_SHORT).show();
                 txtName.setText(name);

@@ -268,9 +268,6 @@ public class AddDetail extends AppCompatActivity {
         dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner2.setAdapter(dataAdapter);
 
-
-
-
         txtAddress1 = (TextView) findViewById(R.id.txtAddress1);
         editTextAddress2 = (EditText) findViewById(R.id.editTextAddress2);
         btnImage1 = (ImageButton) findViewById(R.id.btnImage1);

@@ -80,6 +80,8 @@
         <activity android:name=".Maps.AddLocation">
 
         </activity>
+        <activity android:name=".LoginAndRegister.EmailLogin" />
+        <activity android:name=".LoginAndRegister.EmailRegister" />
     </application>
 
 </manifest>
