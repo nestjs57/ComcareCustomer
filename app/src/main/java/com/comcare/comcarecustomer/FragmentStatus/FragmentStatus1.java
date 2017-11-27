@@ -49,7 +49,13 @@ public class FragmentStatus1 extends Fragment {
         dataSet = new ArrayList<StatusModel>();
         adapter = new StatusAdapter(dataSet);
         RecyclerView recyclerView = (RecyclerView) inflate.findViewById(R.id.rcvyStatus);
-        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        //recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+
+        LinearLayoutManager mLayoutManager = new LinearLayoutManager(getActivity());
+        mLayoutManager.setReverseLayout(true);
+        mLayoutManager.setStackFromEnd(true);
+        recyclerView.setLayoutManager(mLayoutManager);
+
         recyclerView.setAdapter(adapter);
 
         //dataSet.add(new StatusModel("toey", "เมื่อวาน", "กำลังดำเนินดาร"));

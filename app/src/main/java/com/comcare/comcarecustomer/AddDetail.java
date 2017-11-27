@@ -195,6 +195,8 @@ public class AddDetail extends AppCompatActivity {
                         intent.putExtra("img2", btnStr2);
                         intent.putExtra("img3", btnStr3);
                         intent.putExtra("img4", btnStr4);
+                        intent.putExtra("latCur",latCur);
+                        intent.putExtra("lngCur",lngCur);
                         intent.putExtra("chkImg","4");
                     } else if (btn3 == true) {
                         intent.putExtra("edt1", edt1.getText().toString());
@@ -205,6 +207,8 @@ public class AddDetail extends AppCompatActivity {
                         intent.putExtra("img1", btnStr1);
                         intent.putExtra("img2", btnStr2);
                         intent.putExtra("img3", btnStr3);
+                        intent.putExtra("latCur",latCur);
+                        intent.putExtra("lngCur",lngCur);
                         intent.putExtra("chkImg","3");
 
                     } else if (btn2 == true) {
@@ -215,6 +219,8 @@ public class AddDetail extends AppCompatActivity {
                         intent.putExtra("type",String.valueOf(spinner2.getSelectedItem()));
                         intent.putExtra("img1", btnStr1);
                         intent.putExtra("img2", btnStr2);
+                        intent.putExtra("latCur",latCur);
+                        intent.putExtra("lngCur",lngCur);
                         intent.putExtra("chkImg","2");
 
                     } else if (btn1 == true) {
@@ -224,6 +230,8 @@ public class AddDetail extends AppCompatActivity {
                         intent.putExtra("address2",editTextAddress2.getText().toString());
                         intent.putExtra("type",String.valueOf(spinner2.getSelectedItem()));
                         intent.putExtra("img1", btnStr1);
+                        intent.putExtra("latCur",latCur);
+                        intent.putExtra("lngCur",lngCur);
                         intent.putExtra("chkImg","1");
 
                     } else {
@@ -232,6 +240,8 @@ public class AddDetail extends AppCompatActivity {
                         intent.putExtra("address1",txtAddress1.getText().toString());
                         intent.putExtra("address2",editTextAddress2.getText().toString());
                         intent.putExtra("type",String.valueOf(spinner2.getSelectedItem()));
+                        intent.putExtra("latCur",latCur);
+                        intent.putExtra("lngCur",lngCur);
                         intent.putExtra("chkImg","0");
 
                     }
