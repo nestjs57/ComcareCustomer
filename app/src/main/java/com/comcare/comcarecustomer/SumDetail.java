@@ -1,6 +1,7 @@
 package com.comcare.comcarecustomer;
 
 import android.annotation.SuppressLint;
+import android.app.ActionBar;
 import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Context;
@@ -20,6 +21,7 @@ import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -102,6 +104,8 @@ public class SumDetail extends AppCompatActivity {
                 final Dialog dialog = new Dialog(SumDetail.this);
                 dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
                 dialog.setContentView(R.layout.edit_popup);
+                Window windowEdit = dialog.getWindow();
+                windowEdit.setLayout(RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
                 dialog.setCancelable(true);
 
                 EditText editText = (EditText) dialog.findViewById(R.id.edit);
@@ -134,6 +138,8 @@ public class SumDetail extends AppCompatActivity {
                 final Dialog dialog = new Dialog(SumDetail.this);
                 dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
                 dialog.setContentView(R.layout.edit_popup);
+                Window window2 = dialog.getWindow();
+                window2.setLayout(RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
                 dialog.setCancelable(true);
                 EditText editText = (EditText) dialog.findViewById(R.id.edit);
                 editText.setInputType(InputType.TYPE_CLASS_NUMBER);
@@ -167,6 +173,8 @@ public class SumDetail extends AppCompatActivity {
                 final Dialog dialog = new Dialog(SumDetail.this);
                 dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
                 dialog.setContentView(R.layout.activity_confirm_popup);
+                Window window3 = dialog.getWindow();
+                window3.setLayout(RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
                 dialog.setCancelable(true);
                 Button buttonE = (Button) dialog.findViewById(R.id.btncel);
                 buttonE.setOnClickListener(new View.OnClickListener() {

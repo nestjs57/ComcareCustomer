@@ -5,8 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="horizontal"
-    android:padding="20dp"
-    tools:context="com.comcare.comcarecustomer.ConfirmPopup">
+    tools:context="com.comcare.comcarecustomer.ConfirmPopup"
+    android:background="#fff">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -44,7 +44,6 @@
                 android:id="@+id/btncel"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginRight="5dp"
                 android:layout_weight="1"
                 android:background="@android:color/holo_red_light"
                 android:text="ยกเลิก"
@@ -54,7 +53,6 @@
                 android:id="@+id/btnenter"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="5dp"
                 android:layout_weight="1"
                 android:background="#00e441"
                 android:text="ตกลง"

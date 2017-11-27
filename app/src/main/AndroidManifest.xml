@@ -20,6 +20,7 @@
         android:required="true" />
 
     <application
+        android:name=".CustomFont"
         android:allowBackup="true"
         android:hardwareAccelerated="false"
         android:icon="@mipmap/cc_logo"
@@ -27,11 +28,11 @@
         android:largeHeap="true"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme"
-        android:name=".CustomFont">
-        <!--android:name="android.support.multidex.MultiDexApplication"-->
+        android:theme="@style/AppTheme">
+
+        <!-- android:name="android.support.multidex.MultiDexApplication" -->
         <meta-data
-             android:name="com.facebook.sdk.ApplicationId"
+            android:name="com.facebook.sdk.ApplicationId"
             android:value="@string/facebook_app_id" />
 
         <activity
@@ -67,21 +68,20 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
         </activity>
         <activity android:name=".SumDetail" />
         <activity android:name=".LoginAndRegister.Login" />
         <activity
             android:name=".AddDetail"
-            android:windowSoftInputMode="stateHidden">
-
-        </activity>
+            android:windowSoftInputMode="stateHidden"></activity>
         <activity android:name=".ConfirmPopup" />
-        <activity android:name=".Maps.AddLocation">
-
-        </activity>
+        <activity android:name=".Maps.AddLocation"></activity>
         <activity android:name=".LoginAndRegister.EmailLogin" />
         <activity android:name=".LoginAndRegister.EmailRegister" />
+        <activity android:name=".firstLoginDetail">
+
+
+        </activity>
     </application>
 
 </manifest>
