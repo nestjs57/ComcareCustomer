@@ -211,7 +211,7 @@ public class SumDetail extends AppCompatActivity {
 
                                     Calendar c = Calendar.getInstance();
                                     SimpleDateFormat df = new SimpleDateFormat("dd-MM-yyyy");
-                                    SimpleDateFormat dff = new SimpleDateFormat("HH:mm:");
+                                    SimpleDateFormat dff = new SimpleDateFormat("HH:mm");
                                     String formattedDate = df.format(c.getTime());
                                     String formattedDatef = dff.format(c.getTime());
 

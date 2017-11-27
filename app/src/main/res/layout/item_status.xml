@@ -49,18 +49,20 @@
                 android:id="@+id/textView3"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:layout_weight="0.5"
+                android:layout_weight="0"
                 android:gravity="bottom"
-                android:text="ชื่อช่าง : "
+                android:text="อาการ :  "
                 android:textColor="#aa333333"
                 android:textSize="16sp" />
 
             <TextView
-                android:id="@+id/tvName"
+                android:id="@+id/tvProblem"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:layout_weight="9.5"
+                android:layout_weight="1"
+                android:ellipsize="marquee"
                 android:gravity="bottom"
+                android:maxLines="1"
                 android:text="นายพรภวิษย์ บัวบาน"
                 android:textColor="#333"
                 android:textSize="16sp" />
@@ -79,9 +81,9 @@
                 android:id="@+id/textView4"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:layout_weight="0.5"
+                android:layout_weight="0"
                 android:gravity="center_vertical"
-                android:text="วันที่เรียกช่าง : "
+                android:text="วันที่เรียกช่าง :  "
                 android:textColor="#aa333333"
                 android:textSize="16sp" />
 
@@ -89,10 +91,20 @@
                 android:id="@+id/tvDate"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:layout_weight="9.5"
+                android:layout_weight="0"
                 android:gravity="center_vertical"
-                android:text="5 กันยายน 2590, 14:20"
+                android:text="5/10/60"
                 android:textColor="#333"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/tvTime"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_weight="1"
+                android:text="03:02"
+                android:textColor="#000"
                 android:textSize="16sp" />
 
         </LinearLayout>
@@ -123,8 +135,8 @@
                 android:layout_gravity="top"
                 android:layout_weight="9.5"
                 android:gravity="top"
-                android:text="กำลังดำเนินการ"
-                android:textColor="#f00"
+                android:text="รอช่างตอบรับ"
+                android:textColor="@android:color/holo_orange_dark"
                 android:textSize="16sp" />
         </LinearLayout>
 

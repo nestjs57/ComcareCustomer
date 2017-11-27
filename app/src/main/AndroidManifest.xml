@@ -73,15 +73,13 @@
         <activity android:name=".LoginAndRegister.Login" />
         <activity
             android:name=".AddDetail"
-            android:windowSoftInputMode="stateHidden"></activity>
+            android:windowSoftInputMode="stateHidden" />
         <activity android:name=".ConfirmPopup" />
-        <activity android:name=".Maps.AddLocation"></activity>
+        <activity android:name=".Maps.AddLocation" />
         <activity android:name=".LoginAndRegister.EmailLogin" />
         <activity android:name=".LoginAndRegister.EmailRegister" />
-        <activity android:name=".firstLoginDetail">
-
-
-        </activity>
+        <activity android:name=".firstLoginDetail"></activity>
+        <activity android:name=".StatusDetail"></activity>
     </application>
 
 </manifest>
