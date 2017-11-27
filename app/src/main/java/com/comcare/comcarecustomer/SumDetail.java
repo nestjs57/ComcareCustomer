@@ -224,6 +224,11 @@ public class SumDetail extends AppCompatActivity {
                                     x.child("address2").setValue(address2.getText().toString());
                                     x.child("problem1").setValue(txt1.getText().toString());
                                     x.child("problem2").setValue(txt2.getText().toString());
+                                    if (type.getText().toString().equals("คอมพิวเตอร์")){
+                                        x.child("type").setValue("1");
+                                    }else{
+                                        x.child("type").setValue("2");
+                                    }
                                     x.child("Path_img1").setValue(path1);
                                     x.child("Path_img2").setValue("null");
                                     x.child("Path_img3").setValue("null");
@@ -231,7 +236,7 @@ public class SumDetail extends AppCompatActivity {
                                     x.child("latCur").setValue(latCur);
                                     x.child("lngCur").setValue(lngCur);
                                     x.child("technician_Name").setValue("null");
-
+                                    x.child("status").setValue("1");
 
                                     Intent intent = new Intent(SumDetail.this, MainActivity.class);
                                     finishAffinity();
@@ -275,6 +280,11 @@ public class SumDetail extends AppCompatActivity {
                                             x.child("address2").setValue(address2.getText().toString());
                                             x.child("problem1").setValue(txt1.getText().toString());
                                             x.child("problem2").setValue(txt2.getText().toString());
+                                            if (type.getText().toString().equals("คอมพิวเตอร์")){
+                                                x.child("type").setValue("1");
+                                            }else{
+                                                x.child("type").setValue("2");
+                                            }
                                             x.child("Path_img1").setValue(path1);
                                             x.child("Path_img2").setValue(path2);
                                             x.child("Path_img3").setValue("null");
@@ -282,7 +292,7 @@ public class SumDetail extends AppCompatActivity {
                                             x.child("latCur").setValue(latCur);
                                             x.child("lngCur").setValue(lngCur);
                                             x.child("technician_Name").setValue("null");
-
+                                            x.child("status").setValue("1");
 
                                             Intent intent = new Intent(SumDetail.this, MainActivity.class);
                                             finishAffinity();
@@ -334,6 +344,11 @@ public class SumDetail extends AppCompatActivity {
                                                     x.child("address2").setValue(address2.getText().toString());
                                                     x.child("problem1").setValue(txt1.getText().toString());
                                                     x.child("problem2").setValue(txt2.getText().toString());
+                                                    if (type.getText().toString().equals("คอมพิวเตอร์")){
+                                                        x.child("type").setValue("1");
+                                                    }else{
+                                                        x.child("type").setValue("2");
+                                                    }
                                                     x.child("Path_img1").setValue(path1);
                                                     x.child("Path_img2").setValue(path2);
                                                     x.child("Path_img3").setValue(path3);
@@ -341,7 +356,7 @@ public class SumDetail extends AppCompatActivity {
                                                     x.child("latCur").setValue(latCur);
                                                     x.child("lngCur").setValue(lngCur);
                                                     x.child("technician_Name").setValue("null");
-
+                                                    x.child("status").setValue("1");
 
                                                     Intent intent = new Intent(SumDetail.this, MainActivity.class);
                                                     finishAffinity();
@@ -414,7 +429,7 @@ public class SumDetail extends AppCompatActivity {
                                                             x.child("latCur").setValue(latCur);
                                                             x.child("lngCur").setValue(lngCur);
                                                             x.child("technician_Name").setValue("null");
-
+                                                            x.child("status").setValue("1");
 
                                                             Intent intent = new Intent(SumDetail.this, MainActivity.class);
                                                             finishAffinity();
