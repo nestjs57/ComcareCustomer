@@ -40,10 +40,10 @@ public class StatusAdapter extends RecyclerView.Adapter<StatusViewHolder>{
             holder.img.setBackgroundResource(R.drawable.laptop);
         }
 
-        if (data.getUser_id().equals("2")){
+        if (data.getStatus().equals("2")){
             holder.txtStatus.setText("กำลังดำเนินการ");
             holder.txtStatus.setTextColor(Color.parseColor("#FF0000"));
-        }else if (data.getUser_id().equals("3")){
+        }else if (data.getStatus().equals("3")){
             holder.txtStatus.setText("เสร็จสิ้น");
             holder.txtStatus.setTextColor(Color.parseColor("#00FF00"));
 
