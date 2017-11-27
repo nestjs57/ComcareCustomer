@@ -1,5 +1,6 @@
 package com.comcare.comcarecustomer.Adapter;
 
+import android.graphics.Color;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -35,15 +36,24 @@ public class StatusAdapter extends RecyclerView.Adapter<StatusViewHolder>{
 
         StatusModel data = statusSet.get(position);
 
-        if (data.getType().equals("2")) {
+        if (data.getType().equals("2")){
             holder.img.setBackgroundResource(R.drawable.laptop);
+        }
+
+        if (data.getUser_id().equals("2")){
+            holder.txtStatus.setText("กำลังดำเนินการ");
+            holder.txtStatus.setTextColor(Color.parseColor("#FF0000"));
+        }else if (data.getUser_id().equals("3")){
+            holder.txtStatus.setText("เสร็จสิ้น");
+            holder.txtStatus.setTextColor(Color.parseColor("#00FF00"));
+
         }
 
 
 
-        holder.txtName.setText(data.getName());
+        holder.txtProblem.setText(data.getproblem1());
         holder.txtDate.setText(data.getDate());
-        holder.txtStatus.setText(data.getStatus());
+        holder.txtTime.setText(data.getTime());
 
     }
 

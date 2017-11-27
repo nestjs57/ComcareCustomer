@@ -11,19 +11,21 @@ import com.comcare.comcarecustomer.R;
 
 public class StatusViewHolder extends RecyclerView.ViewHolder{
 
-    Intent intent;
-    public TextView txtName;
+    public TextView txtProblem;
     public TextView txtDate;
     public TextView txtStatus;
     public ImageView img;
+    public TextView txtTime;
 
     public StatusViewHolder(View itemView) {
         super(itemView);
 
-        txtName = (TextView) itemView.findViewById(R.id.tvName);
+        txtProblem = (TextView) itemView.findViewById(R.id.tvProblem);
         txtDate = (TextView) itemView.findViewById(R.id.tvDate);
         txtStatus = (TextView) itemView.findViewById(R.id.tvStatus);
         img = (ImageView) itemView.findViewById(R.id.img);
+        txtTime = (TextView) itemView.findViewById(R.id.tvTime);
+
 
 
 
