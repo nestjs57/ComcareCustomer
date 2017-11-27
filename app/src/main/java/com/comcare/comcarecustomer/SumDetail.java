@@ -63,6 +63,8 @@ public class SumDetail extends AppCompatActivity {
     private String Simg2;
     private String Simg3;
     private String Simg4;
+    private String latCur;
+    private String lngCur;
     private FirebaseAuth auth = FirebaseAuth.getInstance();
     final DatabaseReference database = FirebaseDatabase.getInstance().getReference();
     private String name = "";
@@ -226,6 +228,10 @@ public class SumDetail extends AppCompatActivity {
                                     x.child("Path_img2").setValue("null");
                                     x.child("Path_img3").setValue("null");
                                     x.child("Path_img4").setValue("null");
+                                    x.child("latCur").setValue(latCur);
+                                    x.child("lngCur").setValue(lngCur);
+                                    x.child("technician_Name").setValue("null");
+
 
                                     Intent intent = new Intent(SumDetail.this, MainActivity.class);
                                     finishAffinity();
@@ -273,6 +279,10 @@ public class SumDetail extends AppCompatActivity {
                                             x.child("Path_img2").setValue(path2);
                                             x.child("Path_img3").setValue("null");
                                             x.child("Path_img4").setValue("null");
+                                            x.child("latCur").setValue(latCur);
+                                            x.child("lngCur").setValue(lngCur);
+                                            x.child("technician_Name").setValue("null");
+
 
                                             Intent intent = new Intent(SumDetail.this, MainActivity.class);
                                             finishAffinity();
@@ -328,6 +338,10 @@ public class SumDetail extends AppCompatActivity {
                                                     x.child("Path_img2").setValue(path2);
                                                     x.child("Path_img3").setValue(path3);
                                                     x.child("Path_img4").setValue("null");
+                                                    x.child("latCur").setValue(latCur);
+                                                    x.child("lngCur").setValue(lngCur);
+                                                    x.child("technician_Name").setValue("null");
+
 
                                                     Intent intent = new Intent(SumDetail.this, MainActivity.class);
                                                     finishAffinity();
@@ -397,6 +411,10 @@ public class SumDetail extends AppCompatActivity {
                                                             x.child("Path_img2").setValue(path2);
                                                             x.child("Path_img3").setValue(path3);
                                                             x.child("Path_img4").setValue(path4);
+                                                            x.child("latCur").setValue(latCur);
+                                                            x.child("lngCur").setValue(lngCur);
+                                                            x.child("technician_Name").setValue("null");
+
 
                                                             Intent intent = new Intent(SumDetail.this, MainActivity.class);
                                                             finishAffinity();
@@ -491,6 +509,8 @@ public class SumDetail extends AppCompatActivity {
             Simg2 = intent.getStringExtra("img2");
             Simg3 = intent.getStringExtra("img3");
             Simg4 = intent.getStringExtra("img4");
+            latCur = intent.getStringExtra("latCur");
+            lngCur = intent.getStringExtra("lngCur");
 
         } else if (chk.equals("3")) {
             txt1.setText(intent.getStringExtra("edt1"));
@@ -504,6 +524,8 @@ public class SumDetail extends AppCompatActivity {
             Simg1 = intent.getStringExtra("img1");
             Simg2 = intent.getStringExtra("img2");
             Simg3 = intent.getStringExtra("img3");
+            latCur = intent.getStringExtra("latCur");
+            lngCur = intent.getStringExtra("lngCur");
             img4.setVisibility(View.INVISIBLE);
         } else if (chk.equals("2")) {
             txt1.setText(intent.getStringExtra("edt1"));
@@ -515,6 +537,8 @@ public class SumDetail extends AppCompatActivity {
             img2.setImageURI(Uri.parse(intent.getStringExtra("img2")));
             Simg1 = intent.getStringExtra("img1");
             Simg2 = intent.getStringExtra("img2");
+            latCur = intent.getStringExtra("latCur");
+            lngCur = intent.getStringExtra("lngCur");
             img3.setVisibility(View.INVISIBLE);
             img4.setVisibility(View.INVISIBLE);
         } else if (chk.equals("1")) {
@@ -525,6 +549,8 @@ public class SumDetail extends AppCompatActivity {
             type.setText(intent.getStringExtra("type"));
             img1.setImageURI(Uri.parse(intent.getStringExtra("img1")));
             Simg1 = intent.getStringExtra("img1");
+            latCur = intent.getStringExtra("latCur");
+            lngCur = intent.getStringExtra("lngCur");
             img2.setVisibility(View.INVISIBLE);
             img3.setVisibility(View.INVISIBLE);
             img4.setVisibility(View.INVISIBLE);
@@ -534,6 +560,8 @@ public class SumDetail extends AppCompatActivity {
             address1.setText(intent.getStringExtra("address1"));
             address2.setText(intent.getStringExtra("address2"));
             type.setText(intent.getStringExtra("type"));
+            latCur = intent.getStringExtra("latCur");
+            lngCur = intent.getStringExtra("lngCur");
             img1.setVisibility(View.INVISIBLE);
             img2.setVisibility(View.INVISIBLE);
             img3.setVisibility(View.INVISIBLE);
