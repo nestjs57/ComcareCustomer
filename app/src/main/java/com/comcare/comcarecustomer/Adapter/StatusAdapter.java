@@ -46,7 +46,6 @@ public class StatusAdapter extends RecyclerView.Adapter<StatusViewHolder>{
         }else if (data.getStatus().equals("3")){
             holder.txtStatus.setText("เสร็จสิ้น");
             holder.txtStatus.setTextColor(Color.parseColor("#00FF00"));
-
         }
 
 
