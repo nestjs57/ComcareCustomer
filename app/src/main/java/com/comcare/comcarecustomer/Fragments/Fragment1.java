@@ -2,6 +2,7 @@ package com.comcare.comcarecustomer.Fragments;
 
 
 import android.Manifest;
+import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Color;
@@ -9,10 +10,12 @@ import android.location.Location;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.content.ContextCompat;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -90,8 +93,9 @@ public class Fragment1 extends Fragment implements GoogleMap.OnMyLocationButtonC
         return v;
     }
 
+    @SuppressLint("ClickableViewAccessibility")
     private void setEvent(View v) {
-        btnRequese = (Button) v.findViewById(R.id.btnRequese);
+        btnRequese = v.findViewById(R.id.btnRequese);
         btnRequese.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -99,6 +103,26 @@ public class Fragment1 extends Fragment implements GoogleMap.OnMyLocationButtonC
                 intent.putExtra("latCur", lat);
                 intent.putExtra("lngCur", lng);
                 startActivity(intent);
+            }
+        });
+        btnRequese.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View view, MotionEvent motionEvent) {
+
+
+                switch(motionEvent.getAction()) {
+                    case MotionEvent.ACTION_DOWN:
+                        // PRESSED
+                        btnRequese.setBackgroundColor(Color.parseColor("#263174"));
+                        return false; // if you want to handle the touch event
+                    case MotionEvent.ACTION_UP:
+                        // RELEASED
+                        btnRequese.setAlpha((float) 0.7);
+                        btnRequese.setBackgroundColor(Color.parseColor("#4052b5"));
+                        return false; // if you want to handle the touch event
+                }
+                //Snackbar.make(getActivity().findViewById(android.R.id.content),"Look at me, I'm a fancy snackbar", Snackbar.LENGTH_LONG).show();
+                return false;
             }
         });
     }

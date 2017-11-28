@@ -2,7 +2,9 @@ package com.comcare.comcarecustomer.FragmentStatus;
 
 
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v4.app.Fragment;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -33,6 +35,11 @@ public class FragmentStatus1 extends Fragment {
     ValueEventListener valueEventListener;
     DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
     FirebaseUser firebaseDatabase = FirebaseAuth.getInstance().getCurrentUser();
+    SwipeRefreshLayout swipeRefreshLayout;
+    private Runnable runable;
+    private RecyclerView recyclerView;
+    private LinearLayoutManager mLayoutManager;
+
 
     public FragmentStatus1() {
         // Required empty public constructor
@@ -48,10 +55,11 @@ public class FragmentStatus1 extends Fragment {
 
         dataSet = new ArrayList<StatusModel>();
         adapter = new StatusAdapter(dataSet);
-        RecyclerView recyclerView = (RecyclerView) inflate.findViewById(R.id.rcvyStatus);
+        recyclerView = (RecyclerView) inflate.findViewById(R.id.rcvyStatus);
         //recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
-        LinearLayoutManager mLayoutManager = new LinearLayoutManager(getActivity());
+        mLayoutManager = new LinearLayoutManager(getActivity());
+
         mLayoutManager.setReverseLayout(true);
         mLayoutManager.setStackFromEnd(true);
         recyclerView.setLayoutManager(mLayoutManager);
@@ -59,26 +67,56 @@ public class FragmentStatus1 extends Fragment {
         recyclerView.setAdapter(adapter);
 
         //dataSet.add(new StatusModel("toey", "เมื่อวาน", "กำลังดำเนินดาร"));
+        connectToFirebase();
+        // Inflate the layout for this fragment
+        pullDown(inflate);
 
 
+        return inflate;
+
+    }
+
+    private void pullDown(View inflate) {
+        swipeRefreshLayout = (SwipeRefreshLayout) inflate.findViewById(R.id.swipe_refresh_layout);
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                // do something.
+                final Handler handle = new Handler();
+                runable = new Runnable() {
+
+                    @Override
+                    public void run() {
+                        swipeRefreshLayout.setRefreshing(false);
+
+
+                        handle.removeCallbacks(runable);
+                    }
+                };
+                handle.postDelayed(runable, 2000); // delay 2 s.
+            }
+        });
+    }
+
+    private void connectToFirebase() {
         valueEventListener = new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 String problem, date, status, type, time, uid;
 
-                for (DataSnapshot itemSnap : dataSnapshot.getChildren()){
+                for (DataSnapshot itemSnap : dataSnapshot.getChildren()) {
 
                     StatusModel statusModel = itemSnap.getValue(StatusModel.class);
 
-                    problem = statusModel.getproblem1()+"";
-                    date = statusModel.getDate()+"";
-                    status = statusModel.getStatus()+"";
-                    type = statusModel.getType()+"";
-                    time = statusModel.getTime()+"";
+                    problem = statusModel.getproblem1() + "";
+                    date = statusModel.getDate() + "";
+                    status = statusModel.getStatus() + "";
+                    type = statusModel.getType() + "";
+                    time = statusModel.getTime() + "";
                     uid = statusModel.getUser_id();
 
 
-                    if (firebaseDatabase.getUid().equals(uid)){
+                    if (firebaseDatabase.getUid().equals(uid)) {
                         dataSet.add(new StatusModel(problem, date, status, type, time, uid));
                     }
 
@@ -93,14 +131,9 @@ public class FragmentStatus1 extends Fragment {
 
             }
         };
-
         DatabaseReference dbref = FirebaseDatabase.getInstance().getReference();
         DatabaseReference childref = dbref.child("order");
         childref.addValueEventListener(valueEventListener);
-
-        // Inflate the layout for this fragment
-        return inflate;
-
     }
 
 }
