@@ -8,16 +8,20 @@ import android.location.Address;
 import android.location.Geocoder;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
+import android.widget.ScrollView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -71,6 +75,10 @@ public class AddDetail extends AppCompatActivity {
     private Spinner spinner2;
     private TextView ttt;
 
+    private ScrollView scrollView;
+    private Runnable runable;
+    private Boolean spinnerTime = false;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -100,14 +108,14 @@ public class AddDetail extends AppCompatActivity {
 
         }
 
-        ttt = (TextView) findViewById(R.id.ttt);
-        ttt.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Toast.makeText(AddDetail.this,String.valueOf(spinner2.getSelectedItem()),
-                        Toast.LENGTH_SHORT).show();
-            }
-        });
+//        ttt = (TextView) findViewById(R.id.ttt);
+//        ttt.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Toast.makeText(AddDetail.this,String.valueOf(spinner2.getSelectedItem()),
+//                        Toast.LENGTH_SHORT).show();
+//            }
+//        });
     }
 
     @Override
@@ -126,6 +134,8 @@ public class AddDetail extends AppCompatActivity {
 
     private void setEvent() {
 
+        scrollView = (ScrollView) findViewById(R.id.sc);
+
         linearClick.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -135,6 +145,32 @@ public class AddDetail extends AppCompatActivity {
                 startActivityForResult(intent,2);
             }
         });
+        linearClick.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View view, MotionEvent motionEvent) {
+
+
+                switch(motionEvent.getAction()) {
+                    case MotionEvent.ACTION_DOWN:
+                        // PRESSED
+                        linearClick.setAlpha((float) 0.5);
+                        //linearClick.setBackgroundColor(Color.parseColor("#000000"));
+                        scrollView.requestDisallowInterceptTouchEvent(true);
+
+                        return false; // if you want to handle the touch event
+                    case MotionEvent.ACTION_UP:
+                        // RELEASED
+                        linearClick.setAlpha((float) 1.0);
+                        linearClick.setBackgroundColor(Color.parseColor("#ffffff"));
+                        scrollView.requestDisallowInterceptTouchEvent(false);
+
+                        return false; // if you want to handle the touch event
+                }
+                //Snackbar.make(getActivity().findViewById(android.R.id.content),"Look at me, I'm a fancy snackbar", Snackbar.LENGTH_LONG).show();
+                return false;
+            }
+        });
+
 
         btnImage1.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -255,6 +291,31 @@ public class AddDetail extends AppCompatActivity {
 
             }
         });
+        btnNext.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View view, MotionEvent motionEvent) {
+
+
+                switch(motionEvent.getAction()) {
+                    case MotionEvent.ACTION_DOWN:
+                        // PRESSED
+                        btnNext.setAlpha((float) 0.8);
+                        //linearClick.setBackgroundColor(Color.parseColor("#000000"));
+                        scrollView.requestDisallowInterceptTouchEvent(true);
+
+                        return false; // if you want to handle the touch event
+                    case MotionEvent.ACTION_UP:
+                        // RELEASED
+                        btnNext.setAlpha((float) 1.0);
+                        //btnNext.setBackgroundColor(Color.parseColor("#ffffff"));
+                        scrollView.requestDisallowInterceptTouchEvent(false);
+
+                        return false; // if you want to handle the touch event
+                }
+                //Snackbar.make(getActivity().findViewById(android.R.id.content),"Look at me, I'm a fancy snackbar", Snackbar.LENGTH_LONG).show();
+                return false;
+            }
+        });
 
     }
 
@@ -272,14 +333,12 @@ public class AddDetail extends AppCompatActivity {
 
     private void bindWidget() {
 
-        spinner2 = (Spinner) findViewById(R.id.spinner);
-        List<String> list = new ArrayList<String>();
-        list.add("คอมพิวเตอร์");
-        list.add("โน๊ตบุ๊ค");
-        ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this,
-                android.R.layout.simple_spinner_item, list);
-        dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinner2.setAdapter(dataAdapter);
+        spinnerMedthod();
+
+
+
+
+
 
         txtAddress1 = (TextView) findViewById(R.id.txtAddress1);
         editTextAddress2 = (EditText) findViewById(R.id.editTextAddress2);
@@ -292,6 +351,47 @@ public class AddDetail extends AppCompatActivity {
         linearClick = (LinearLayout) findViewById(R.id.linearClick);
         btnNext = (Button) findViewById(R.id.btnNext);
         textView = (TextView) findViewById(R.id.txtAddress1);
+    }
+
+    private void spinnerMedthod() {
+        spinner2 = (Spinner) findViewById(R.id.spinner);
+        List<String> list = new ArrayList<String>();
+        list.add("คอมพิวเตอร์");
+        list.add("โน๊ตบุ๊ค");
+        ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this,
+                android.R.layout.simple_spinner_item, list);
+        dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner2.setAdapter(dataAdapter);
+        spinner2.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, final View view, int position, long id) {
+
+
+                if (spinnerTime==false){
+                    final Handler handle = new Handler();
+                    runable = new Runnable() {
+
+                        @Override
+                        public void run() {
+
+                            Snackbar.make(view, "ประเภท : "+String.valueOf(spinner2.getSelectedItem()), Snackbar.LENGTH_LONG).show();
+                            handle.removeCallbacks(runable);
+                        }
+                    };
+                    handle.postDelayed(runable, 500); // delay 2 s.
+                    spinnerTime = true;
+                }else {
+                    Snackbar.make(view, "ประเภท : "+String.valueOf(spinner2.getSelectedItem()), Snackbar.LENGTH_LONG).show();
+                }
+
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
     }
 
     @Override

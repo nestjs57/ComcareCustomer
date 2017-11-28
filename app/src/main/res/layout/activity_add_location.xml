@@ -7,11 +7,22 @@
     tools:context="com.comcare.comcarecustomer.Maps.AddLocation">
 
 
+    <fragment
+        android:id="@+id/mMap"
+        android:name="com.google.android.gms.maps.SupportMapFragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+
+        tools:context="com.example.mapwithmarker.MapsMarkerActivity" />
+
     <LinearLayout
         android:id="@+id/linearLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#fff"
+        android:layout_margin="5dp"
+        android:background="@drawable/com_facebook_auth_dialog_background"
         android:clickable="true"
         android:orientation="horizontal"
         android:padding="5dp">
@@ -47,16 +58,6 @@
 
     </LinearLayout>
 
-    <fragment
-        android:id="@+id/mMap"
-        android:name="com.google.android.gms.maps.SupportMapFragment"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_below="@+id/linearLayout"
-        tools:context="com.example.mapwithmarker.MapsMarkerActivity" />
-
     <Button
         android:id="@+id/okButton"
         android:layout_width="match_parent"
@@ -66,7 +67,7 @@
         android:layout_marginBottom="38dp"
         android:layout_marginLeft="30dp"
         android:layout_marginRight="30dp"
-        android:background="#4153b5"
+        android:background="@drawable/com_facebook_button_like_background"
         android:text="ตกลง"
         android:textColor="#fff" />
 

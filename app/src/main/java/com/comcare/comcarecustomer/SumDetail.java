@@ -16,6 +16,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.InputType;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
@@ -134,6 +135,7 @@ public class SumDetail extends AppCompatActivity {
             }
         });
 
+
         txtTel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -167,6 +169,7 @@ public class SumDetail extends AppCompatActivity {
                 dialog.show();
             }
         });
+
         //404
         btnConfirm.setOnClickListener(new View.OnClickListener() {
             @Override

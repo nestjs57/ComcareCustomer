@@ -93,7 +93,7 @@ public class FragmentStatus1 extends Fragment {
                         handle.removeCallbacks(runable);
                     }
                 };
-                handle.postDelayed(runable, 2000); // delay 2 s.
+                handle.postDelayed(runable, 2000); // delay 3 s.
             }
         });
     }

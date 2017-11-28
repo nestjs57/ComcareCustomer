@@ -34,7 +34,7 @@
             android:layout_marginLeft="50dp"
             android:layout_marginRight="50dp"
             android:alpha="0.7"
-            android:background="@color/colorPrimary"
+            android:background="@drawable/com_facebook_button_like_background"
             android:text="เรียกช่าง"
             android:textColor="@color/cast_libraries_material_featurehighlight_text_header_color" />
 

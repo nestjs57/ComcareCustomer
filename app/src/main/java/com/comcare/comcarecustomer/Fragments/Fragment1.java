@@ -113,12 +113,13 @@ public class Fragment1 extends Fragment implements GoogleMap.OnMyLocationButtonC
                 switch(motionEvent.getAction()) {
                     case MotionEvent.ACTION_DOWN:
                         // PRESSED
-                        btnRequese.setBackgroundColor(Color.parseColor("#263174"));
+                        btnRequese.setAlpha((float) 0.9);
+                        //btnRequese.setBackgroundColor(Color.parseColor("#263174"));
                         return false; // if you want to handle the touch event
                     case MotionEvent.ACTION_UP:
                         // RELEASED
                         btnRequese.setAlpha((float) 0.7);
-                        btnRequese.setBackgroundColor(Color.parseColor("#4052b5"));
+                        //btnRequese.setBackgroundColor(Color.parseColor("#4052b5"));
                         return false; // if you want to handle the touch event
                 }
                 //Snackbar.make(getActivity().findViewById(android.R.id.content),"Look at me, I'm a fancy snackbar", Snackbar.LENGTH_LONG).show();

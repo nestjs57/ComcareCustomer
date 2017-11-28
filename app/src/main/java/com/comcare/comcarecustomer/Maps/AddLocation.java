@@ -3,6 +3,7 @@ package com.comcare.comcarecustomer.Maps;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.location.Address;
 import android.location.Geocoder;
 import android.location.Location;
@@ -13,6 +14,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.ClipboardManager;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
@@ -105,6 +107,30 @@ public class AddLocation extends AppCompatActivity implements GoogleMap.OnMyLoca
                 finish();
             }
         });
+        okButton.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View view, MotionEvent motionEvent) {
+
+
+                switch(motionEvent.getAction()) {
+                    case MotionEvent.ACTION_DOWN:
+                        // PRESSED
+                        okButton.setAlpha((float) 0.7);
+                        //linearClick.setBackgroundColor(Color.parseColor("#000000"));
+                        //scrollView.requestDisallowInterceptTouchEvent(true);
+
+                        return false; // if you want to handle the touch event
+                    case MotionEvent.ACTION_UP:
+                        // RELEASED
+                        okButton.setAlpha((float) 1.0);
+                        //linearClick.setBackgroundColor(Color.parseColor("#ffffff"));
+
+                        return false; // if you want to handle the touch event
+                }
+                //Snackbar.make(getActivity().findViewById(android.R.id.content),"Look at me, I'm a fancy snackbar", Snackbar.LENGTH_LONG).show();
+                return false;
+            }
+        });
     }
 
     private void getIntents() {
@@ -138,6 +164,31 @@ public class AddLocation extends AppCompatActivity implements GoogleMap.OnMyLoca
                     // TODO: Handle the error.
                 }
 
+            }
+        });
+
+        linearLayout.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View view, MotionEvent motionEvent) {
+
+
+                switch(motionEvent.getAction()) {
+                    case MotionEvent.ACTION_DOWN:
+                        // PRESSED
+                        linearLayout.setAlpha((float) 0.7);
+                        //linearClick.setBackgroundColor(Color.parseColor("#000000"));
+                        //scrollView.requestDisallowInterceptTouchEvent(true);
+
+                        return false; // if you want to handle the touch event
+                    case MotionEvent.ACTION_UP:
+                        // RELEASED
+                        linearLayout.setAlpha((float) 1.0);
+                        //linearClick.setBackgroundColor(Color.parseColor("#ffffff"));
+
+                        return false; // if you want to handle the touch event
+                }
+                //Snackbar.make(getActivity().findViewById(android.R.id.content),"Look at me, I'm a fancy snackbar", Snackbar.LENGTH_LONG).show();
+                return false;
             }
         });
 
