@@ -27,8 +27,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -77,10 +79,10 @@ public class SumDetail extends AppCompatActivity {
     private StorageReference filepath2 = null;
     private StorageReference filepath3 = null;
     private StorageReference filepath4 = null;
-    private Task<Uri> downloadUri1;
-    private Task<Uri> downloadUri2;
-    private Task<Uri> downloadUri3;
-    private Task<Uri> downloadUri4;
+    private Uri downloadUri1;
+    private Uri downloadUri2;
+    private Uri downloadUri3;
+    private Uri downloadUri4;
 
 
     @Override
@@ -204,12 +206,12 @@ public class SumDetail extends AppCompatActivity {
                         if (chk.equals("1")) {
                             Intent intent = getIntent();
                             final StorageReference filepath = mStorage.child("photo").child(auth.getCurrentUser().getUid().toString()).child((Uri.parse(intent.getStringExtra("img1"))).getLastPathSegment());
-                            filepath.putFile(Uri.parse(Simg1)).addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
+                            filepath.putFile(Uri.parse(Simg1)).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                                 @Override
-                                public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
+                                public void onSuccess(UploadTask.TaskSnapshot taskSnapshot1) {
                                     progressDialog.dismiss();
                                     String path1 = filepath.getPath();
-                                    downloadUri1 = filepath.getDownloadUrl();
+                                    downloadUri1 = taskSnapshot1.getDownloadUrl();
 
                                     final FirebaseDatabase database = FirebaseDatabase.getInstance();
                                     DatabaseReference ref = database.getReference();
@@ -255,16 +257,17 @@ public class SumDetail extends AppCompatActivity {
                         } else if (chk.equals("2")) {
                             Intent intent = getIntent();
                             filepath = mStorage.child("photo").child(auth.getCurrentUser().getUid().toString()).child((Uri.parse(intent.getStringExtra("img1"))).getLastPathSegment());
-                            filepath.putFile(Uri.parse(Simg1)).addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
+                            filepath.putFile(Uri.parse(Simg1)).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                                 @Override
-                                public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
-                                    downloadUri1 = filepath.getDownloadUrl();
+                                public void onSuccess(UploadTask.TaskSnapshot taskSnapshot1) {
+                                    downloadUri1 = taskSnapshot1.getDownloadUrl();
                                     Intent intent = getIntent();
                                     filepath2 = mStorage.child("photo").child(auth.getCurrentUser().getUid().toString()).child((Uri.parse(intent.getStringExtra("img2"))).getLastPathSegment());
-                                    filepath2.putFile(Uri.parse(Simg2)).addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
+                                    filepath2.putFile(Uri.parse(Simg2)).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                                         @Override
-                                        public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
-                                            downloadUri2 = filepath2.getDownloadUrl();
+                                        public void onSuccess(UploadTask.TaskSnapshot taskSnapshot2) {
+
+                                            downloadUri2 = taskSnapshot2.getDownloadUrl();
                                             progressDialog.dismiss();
                                             String path1 = filepath.getPath();
                                             String path2 = filepath2.getPath();
@@ -315,22 +318,22 @@ public class SumDetail extends AppCompatActivity {
                         } else if (chk.equals("3")) {
                             Intent intent = getIntent();
                             filepath = mStorage.child("photo").child(auth.getCurrentUser().getUid().toString()).child((Uri.parse(intent.getStringExtra("img1"))).getLastPathSegment());
-                            filepath.putFile(Uri.parse(Simg1)).addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
+                            filepath.putFile(Uri.parse(Simg1)).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                                 @Override
-                                public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
-                                    downloadUri1 = filepath.getDownloadUrl();
+                                public void onSuccess(final UploadTask.TaskSnapshot taskSnapshot1) {
+                                    downloadUri1 = taskSnapshot1.getDownloadUrl();
                                     Intent intent = getIntent();
                                     filepath2 = mStorage.child("photo").child(auth.getCurrentUser().getUid().toString()).child((Uri.parse(intent.getStringExtra("img2"))).getLastPathSegment());
-                                    filepath2.putFile(Uri.parse(Simg2)).addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
+                                    filepath2.putFile(Uri.parse(Simg2)).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                                         @Override
-                                        public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
-                                            downloadUri2 = filepath2.getDownloadUrl();
+                                        public void onSuccess(final UploadTask.TaskSnapshot taskSnapshot2) {
+                                            downloadUri2 = taskSnapshot2.getDownloadUrl();
                                             Intent intent = getIntent();
                                             filepath3 = mStorage.child("photo").child(auth.getCurrentUser().getUid().toString()).child((Uri.parse(intent.getStringExtra("img3"))).getLastPathSegment());
-                                            filepath3.putFile(Uri.parse(Simg3)).addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
+                                            filepath3.putFile(Uri.parse(Simg3)).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                                                 @Override
-                                                public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
-                                                    downloadUri3 = filepath3.getDownloadUrl();
+                                                public void onSuccess(final UploadTask.TaskSnapshot taskSnapshot3) {
+                                                    downloadUri3 = taskSnapshot3.getDownloadUrl();
                                                     progressDialog.dismiss();
                                                     String path1 = filepath.getPath();
                                                     String path2 = filepath2.getPath();
@@ -385,28 +388,28 @@ public class SumDetail extends AppCompatActivity {
                         } else if (chk.equals("4")) {
                             Intent intent = getIntent();
                             filepath = mStorage.child("photo").child(auth.getCurrentUser().getUid().toString()).child((Uri.parse(intent.getStringExtra("img1"))).getLastPathSegment());
-                            filepath.putFile(Uri.parse(Simg1)).addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
+                            filepath.putFile(Uri.parse(Simg1)).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                                 @Override
-                                public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
-                                    downloadUri1 = filepath.getDownloadUrl();
+                                public void onSuccess(UploadTask.TaskSnapshot taskSnapshot1) {
+                                    downloadUri1 = taskSnapshot1.getDownloadUrl();
                                     Intent intent = getIntent();
                                     filepath2 = mStorage.child("photo").child(auth.getCurrentUser().getUid().toString()).child((Uri.parse(intent.getStringExtra("img2"))).getLastPathSegment());
-                                    filepath2.putFile(Uri.parse(Simg2)).addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
+                                    filepath2.putFile(Uri.parse(Simg2)).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                                         @Override
-                                        public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
-                                            downloadUri2 = filepath2.getDownloadUrl();
+                                        public void onSuccess(UploadTask.TaskSnapshot taskSnapshot12) {
+                                            downloadUri2 = taskSnapshot12.getDownloadUrl();
                                             Intent intent = getIntent();
                                             filepath3 = mStorage.child("photo").child(auth.getCurrentUser().getUid().toString()).child((Uri.parse(intent.getStringExtra("img3"))).getLastPathSegment());
-                                            filepath3.putFile(Uri.parse(Simg3)).addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
+                                            filepath3.putFile(Uri.parse(Simg3)).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                                                 @Override
-                                                public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
-                                                    downloadUri3 = filepath3.getDownloadUrl();
+                                                public void onSuccess(UploadTask.TaskSnapshot taskSnapshot13) {
+                                                    downloadUri3 = taskSnapshot13.getDownloadUrl();
                                                     Intent intent = getIntent();
                                                     filepath4 = mStorage.child("photo").child(auth.getCurrentUser().getUid().toString()).child((Uri.parse(intent.getStringExtra("img4"))).getLastPathSegment());
-                                                    filepath4.putFile(Uri.parse(Simg4)).addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
+                                                    filepath4.putFile(Uri.parse(Simg4)).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                                                         @Override
-                                                        public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
-                                                            downloadUri4 = filepath4.getDownloadUrl();
+                                                        public void onSuccess(UploadTask.TaskSnapshot taskSnapshot14) {
+                                                            downloadUri4 = taskSnapshot14.getDownloadUrl();
                                                             progressDialog.dismiss();
                                                             String path1 = filepath.getPath();
                                                             String path2 = filepath2.getPath();
@@ -442,7 +445,7 @@ public class SumDetail extends AppCompatActivity {
                                                             x.child("Path_img1").setValue(downloadUri1.toString());
                                                             x.child("Path_img2").setValue(downloadUri2.toString());
                                                             x.child("Path_img3").setValue(downloadUri3.toString());
-                                                            x.child("Path_img4").setValue(downloadUri4.toString());
+                                                            x.child("Path_img4").setValue(downloadUri4.toString() );
                                                             x.child("latCur").setValue(latCur);
                                                             x.child("lngCur").setValue(lngCur);
                                                             x.child("technician_Name").setValue("null");
