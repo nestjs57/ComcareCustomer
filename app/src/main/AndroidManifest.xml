@@ -78,8 +78,9 @@
         <activity android:name=".Maps.AddLocation" />
         <activity android:name=".LoginAndRegister.EmailLogin" />
         <activity android:name=".LoginAndRegister.EmailRegister" />
-        <activity android:name=".firstLoginDetail"></activity>
-        <activity android:name=".StatusDetail"></activity>
+        <activity android:name=".firstLoginDetail" />
+        <activity android:name=".StatusDetail" />
+        <activity android:name=".ImagePopup"></activity>
     </application>
 
 </manifest>
