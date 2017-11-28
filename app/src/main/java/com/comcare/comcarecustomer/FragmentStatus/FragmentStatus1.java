@@ -102,11 +102,12 @@ public class FragmentStatus1 extends Fragment {
         valueEventListener = new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                String problem, date, status, type, time, uid;
+                String problem, date, status, type, time, uid, oid;
 
                 for (DataSnapshot itemSnap : dataSnapshot.getChildren()) {
 
                     StatusModel statusModel = itemSnap.getValue(StatusModel.class);
+                    oid = itemSnap.getKey();
 
                     problem = statusModel.getproblem1() + "";
                     date = statusModel.getDate() + "";
@@ -116,8 +117,8 @@ public class FragmentStatus1 extends Fragment {
                     uid = statusModel.getUser_id();
 
 
-                    if (firebaseDatabase.getUid().equals(uid)) {
-                        dataSet.add(new StatusModel(problem, date, status, type, time, uid));
+                    if (firebaseDatabase.getUid().equals(uid)){
+                        dataSet.add(new StatusModel(problem, date, status, type, time, uid, oid));
                     }
 
 
@@ -131,9 +132,13 @@ public class FragmentStatus1 extends Fragment {
 
             }
         };
+
         DatabaseReference dbref = FirebaseDatabase.getInstance().getReference();
         DatabaseReference childref = dbref.child("order");
         childref.addValueEventListener(valueEventListener);
+
+
+
     }
 
 }

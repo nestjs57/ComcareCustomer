@@ -2,7 +2,7 @@ package com.comcare.comcarecustomer.Models;
 
 public class StatusModel {
 
-    private String problem1, date, status, type, time, user_id;
+    private String problem1, date, status, type, time, user_id, order_id;
 
     public StatusModel() {
         this.problem1 = "";
@@ -11,15 +11,17 @@ public class StatusModel {
         this.type = "";
         this.time = "";
         this.user_id = "";
+        this.order_id = "";
     }
 
-    public StatusModel(String problem1, String date, String status, String type, String time, String user_id) {
+    public StatusModel(String problem1, String date, String status, String type, String time, String user_id, String order_id) {
         this.problem1 = problem1;
         this.date = date;
         this.status = status;
         this.type = type;
         this.time = time;
         this.user_id = user_id;
+        this.order_id = order_id;
     }
 
     public String getproblem1() {
@@ -68,6 +70,14 @@ public class StatusModel {
 
     public void setUser_id(String user_id) {
         this.user_id = user_id;
+    }
+
+    public String getOrder_id() {
+        return order_id;
+    }
+
+    public void setOrder_id(String order_id) {
+        this.order_id = order_id;
     }
 }
 

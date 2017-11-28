@@ -6,8 +6,17 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.comcare.comcarecustomer.AddDetail;
+import com.comcare.comcarecustomer.Models.StatusModel;
 import com.comcare.comcarecustomer.R;
+import com.comcare.comcarecustomer.StatusDetail;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class StatusViewHolder extends RecyclerView.ViewHolder{
 
@@ -16,6 +25,9 @@ public class StatusViewHolder extends RecyclerView.ViewHolder{
     public TextView txtStatus;
     public ImageView img;
     public TextView txtTime;
+    public DatabaseReference databaseReference;
+    public ValueEventListener valueEventListener;
+    public Intent intent;
 
     public StatusViewHolder(View itemView) {
         super(itemView);
@@ -29,11 +41,37 @@ public class StatusViewHolder extends RecyclerView.ViewHolder{
 
 
 
-        itemView.setOnClickListener(new View.OnClickListener() {
-        @Override
-        public void onClick(View view) {
-            //for intent to status detail
-        }
-    });
+//        itemView.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//
+//                Intent intent = new Intent(view.getContext(), StatusDetail.class);
+//                view.getContext().startActivity(intent);
+//
+//            }
+//        });
 }
 }
+
+//            valueEventListener = new ValueEventListener() {
+//                @Override
+//                public void onDataChange(DataSnapshot dataSnapshot) {
+//
+//                    for (DataSnapshot itemsnap : dataSnapshot.getChildren()) {
+//
+//                        String key = itemsnap.getKey();
+//
+//                        Toast.makeText(view.getContext(), key, Toast.LENGTH_LONG).show();
+//
+//                    }
+//
+//                }
+//
+//                @Override
+//                public void onCancelled(DatabaseError databaseError) {
+//
+//                }
+//            };
+//
+//            databaseReference = FirebaseDatabase.getInstance().getReference("order");
+//            databaseReference.addValueEventListener(valueEventListener);

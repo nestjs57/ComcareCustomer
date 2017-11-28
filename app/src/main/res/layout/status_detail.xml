@@ -78,8 +78,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="อรรถชัย สว่างวงษ์ :"
-                        android:textSize="16dp"
-                        android:textColor="#333" />
+                        android:textColor="#333"
+                        android:textSize="16dp" />
 
                 </LinearLayout>
 

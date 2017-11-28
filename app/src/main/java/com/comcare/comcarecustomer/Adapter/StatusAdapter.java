@@ -1,15 +1,21 @@
 package com.comcare.comcarecustomer.Adapter;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.comcare.comcarecustomer.Models.StatusModel;
 import com.comcare.comcarecustomer.R;
+import com.comcare.comcarecustomer.StatusDetail;
 import com.comcare.comcarecustomer.ViewHolder.StatusViewHolder;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 import java.util.ArrayList;
 
 public class StatusAdapter extends RecyclerView.Adapter<StatusViewHolder>{
@@ -27,14 +33,17 @@ public class StatusAdapter extends RecyclerView.Adapter<StatusViewHolder>{
     public StatusViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
         View viewh = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_status,parent,false);
-        StatusViewHolder holder = new StatusViewHolder(viewh);
+        final StatusViewHolder holder = new StatusViewHolder(viewh);
+
+
+
         return holder;
     }
 
     @Override
-    public void onBindViewHolder(StatusViewHolder holder, int position) {
+    public void onBindViewHolder(StatusViewHolder holder, final int position) {
 
-        StatusModel data = statusSet.get(position);
+        final StatusModel data = statusSet.get(position);
 
         if (data.getType().equals("2")){
             holder.img.setBackgroundResource(R.drawable.laptop);
@@ -54,11 +63,32 @@ public class StatusAdapter extends RecyclerView.Adapter<StatusViewHolder>{
         holder.txtDate.setText(data.getDate());
         holder.txtTime.setText(data.getTime());
 
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+
+                Intent intent = new Intent(view.getContext(),StatusDetail.class);
+                intent.putExtra("key",data.getOrder_id());
+                view.getContext().startActivity(intent);
+
+            }
+        });
+
     }
+
 
     @Override
     public int getItemCount() {
         return statusSet.size();
     }
+
+
+
+
+
+
+
 }
 
