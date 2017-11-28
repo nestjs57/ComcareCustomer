@@ -222,6 +222,8 @@ public class Fragment1 extends Fragment implements GoogleMap.OnMyLocationButtonC
                         LocationServices.FusedLocationApi.requestLocationUpdates(mApiClient, mRequest, new LocationListener() {
                             @Override
                             public void onLocationChanged(Location location) {
+                                //Toast.makeText(getActivity(), location.getLatitude()+" "+location.getLongitude(), Toast.LENGTH_LONG).show();
+
                                 animateToDefaultLocation();
                             }
                         });

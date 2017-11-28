@@ -77,6 +77,10 @@ public class SumDetail extends AppCompatActivity {
     private StorageReference filepath2 = null;
     private StorageReference filepath3 = null;
     private StorageReference filepath4 = null;
+    private Task<Uri> downloadUri1;
+    private Task<Uri> downloadUri2;
+    private Task<Uri> downloadUri3;
+    private Task<Uri> downloadUri4;
 
 
     @Override
@@ -205,6 +209,7 @@ public class SumDetail extends AppCompatActivity {
                                 public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
                                     progressDialog.dismiss();
                                     String path1 = filepath.getPath();
+                                    downloadUri1 = filepath.getDownloadUrl();
 
                                     final FirebaseDatabase database = FirebaseDatabase.getInstance();
                                     DatabaseReference ref = database.getReference();
@@ -232,7 +237,7 @@ public class SumDetail extends AppCompatActivity {
                                     }else{
                                         x.child("type").setValue("2");
                                     }
-                                    x.child("Path_img1").setValue(path1);
+                                    x.child("Path_img1").setValue(downloadUri1.toString());
                                     x.child("Path_img2").setValue("null");
                                     x.child("Path_img3").setValue("null");
                                     x.child("Path_img4").setValue("null");
@@ -253,11 +258,13 @@ public class SumDetail extends AppCompatActivity {
                             filepath.putFile(Uri.parse(Simg1)).addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
                                 @Override
                                 public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
+                                    downloadUri1 = filepath.getDownloadUrl();
                                     Intent intent = getIntent();
                                     filepath2 = mStorage.child("photo").child(auth.getCurrentUser().getUid().toString()).child((Uri.parse(intent.getStringExtra("img2"))).getLastPathSegment());
                                     filepath2.putFile(Uri.parse(Simg2)).addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
                                         @Override
                                         public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
+                                            downloadUri2 = filepath2.getDownloadUrl();
                                             progressDialog.dismiss();
                                             String path1 = filepath.getPath();
                                             String path2 = filepath2.getPath();
@@ -288,8 +295,8 @@ public class SumDetail extends AppCompatActivity {
                                             }else{
                                                 x.child("type").setValue("2");
                                             }
-                                            x.child("Path_img1").setValue(path1);
-                                            x.child("Path_img2").setValue(path2);
+                                            x.child("Path_img1").setValue(downloadUri1.toString());
+                                            x.child("Path_img2").setValue(downloadUri2.toString());
                                             x.child("Path_img3").setValue("null");
                                             x.child("Path_img4").setValue("null");
                                             x.child("latCur").setValue(latCur);
@@ -311,16 +318,19 @@ public class SumDetail extends AppCompatActivity {
                             filepath.putFile(Uri.parse(Simg1)).addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
                                 @Override
                                 public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
+                                    downloadUri1 = filepath.getDownloadUrl();
                                     Intent intent = getIntent();
                                     filepath2 = mStorage.child("photo").child(auth.getCurrentUser().getUid().toString()).child((Uri.parse(intent.getStringExtra("img2"))).getLastPathSegment());
                                     filepath2.putFile(Uri.parse(Simg2)).addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
                                         @Override
                                         public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
+                                            downloadUri2 = filepath2.getDownloadUrl();
                                             Intent intent = getIntent();
                                             filepath3 = mStorage.child("photo").child(auth.getCurrentUser().getUid().toString()).child((Uri.parse(intent.getStringExtra("img3"))).getLastPathSegment());
                                             filepath3.putFile(Uri.parse(Simg3)).addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
                                                 @Override
                                                 public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
+                                                    downloadUri3 = filepath3.getDownloadUrl();
                                                     progressDialog.dismiss();
                                                     String path1 = filepath.getPath();
                                                     String path2 = filepath2.getPath();
@@ -352,9 +362,9 @@ public class SumDetail extends AppCompatActivity {
                                                     }else{
                                                         x.child("type").setValue("2");
                                                     }
-                                                    x.child("Path_img1").setValue(path1);
-                                                    x.child("Path_img2").setValue(path2);
-                                                    x.child("Path_img3").setValue(path3);
+                                                    x.child("Path_img1").setValue(downloadUri1.toString());
+                                                    x.child("Path_img2").setValue(downloadUri2.toString());
+                                                    x.child("Path_img3").setValue(downloadUri3.toString());
                                                     x.child("Path_img4").setValue("null");
                                                     x.child("latCur").setValue(latCur);
                                                     x.child("lngCur").setValue(lngCur);
@@ -378,21 +388,25 @@ public class SumDetail extends AppCompatActivity {
                             filepath.putFile(Uri.parse(Simg1)).addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
                                 @Override
                                 public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
+                                    downloadUri1 = filepath.getDownloadUrl();
                                     Intent intent = getIntent();
                                     filepath2 = mStorage.child("photo").child(auth.getCurrentUser().getUid().toString()).child((Uri.parse(intent.getStringExtra("img2"))).getLastPathSegment());
                                     filepath2.putFile(Uri.parse(Simg2)).addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
                                         @Override
                                         public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
+                                            downloadUri2 = filepath2.getDownloadUrl();
                                             Intent intent = getIntent();
                                             filepath3 = mStorage.child("photo").child(auth.getCurrentUser().getUid().toString()).child((Uri.parse(intent.getStringExtra("img3"))).getLastPathSegment());
                                             filepath3.putFile(Uri.parse(Simg3)).addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
                                                 @Override
                                                 public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
+                                                    downloadUri3 = filepath3.getDownloadUrl();
                                                     Intent intent = getIntent();
                                                     filepath4 = mStorage.child("photo").child(auth.getCurrentUser().getUid().toString()).child((Uri.parse(intent.getStringExtra("img4"))).getLastPathSegment());
                                                     filepath4.putFile(Uri.parse(Simg4)).addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
                                                         @Override
                                                         public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
+                                                            downloadUri4 = filepath4.getDownloadUrl();
                                                             progressDialog.dismiss();
                                                             String path1 = filepath.getPath();
                                                             String path2 = filepath2.getPath();
@@ -425,10 +439,10 @@ public class SumDetail extends AppCompatActivity {
                                                             }else{
                                                                 x.child("type").setValue("2");
                                                             }
-                                                            x.child("Path_img1").setValue(path1);
-                                                            x.child("Path_img2").setValue(path2);
-                                                            x.child("Path_img3").setValue(path3);
-                                                            x.child("Path_img4").setValue(path4);
+                                                            x.child("Path_img1").setValue(downloadUri1.toString());
+                                                            x.child("Path_img2").setValue(downloadUri2.toString());
+                                                            x.child("Path_img3").setValue(downloadUri3.toString());
+                                                            x.child("Path_img4").setValue(downloadUri4.toString());
                                                             x.child("latCur").setValue(latCur);
                                                             x.child("lngCur").setValue(lngCur);
                                                             x.child("technician_Name").setValue("null");
