@@ -3,6 +3,7 @@ package com.comcare.comcarecustomer.LoginAndRegister;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.view.View;
@@ -12,6 +13,7 @@ import android.widget.Toast;
 
 import com.comcare.comcarecustomer.MainActivity;
 import com.comcare.comcarecustomer.R;
+import com.comcare.comcarecustomer.firstLoginDetail;
 import com.facebook.AccessToken;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
@@ -26,8 +28,11 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FacebookAuthProvider;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class Login extends Activity {
 
@@ -37,7 +42,8 @@ public class Login extends Activity {
     private ProgressDialog mProgressDialog;
     private TextView txtLogin;
     private Button btnMailRegister;
-
+    private ValueEventListener valueEventListener;
+    private Intent intent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,9 +75,7 @@ public class Login extends Activity {
                             //Toast.makeText(getApplication(),"ยินดีต้อนรับ facebook: "+full_name, Toast.LENGTH_LONG).show();
 
                         }
-
                     }
-
                     @Override
                     public void onCancel() {
                         // App code
@@ -127,20 +131,19 @@ public class Login extends Activity {
                                 Toast.makeText(getApplication(),"ยินดีต้อนรับ : "+full_name, Toast.LENGTH_LONG).show();
 
                                 dbref.child("user").child(user.getUid()).child("info").child("f_name").setValue(f_name);
-                                dbref.child("user").child(user.getUid()).child("info").child("m_name").setValue(m_name);
                                 dbref.child("user").child(user.getUid()).child("info").child("l_name").setValue(l_name);
                                 dbref.child("user").child(user.getUid()).child("info").child("full_name").setValue(full_name);
                                 dbref.child("user").child(user.getUid()).child("info").child("profile_image").setValue(profile_image);
                                 dbref.child("user").child(user.getUid()).child("info").child("name").setValue("null");
                                 dbref.child("user").child(user.getUid()).child("info").child("lastname").setValue("null");
                                 dbref.child("user").child(user.getUid()).child("info").child("tel").setValue("null");
+                                checkTel();
 
 
                             }
                             //Toast.makeText(login.this, "username & password Fail", Toast.LENGTH_SHORT).show();
-                            Intent intent = new Intent(getApplication(), MainActivity.class);
-                            finish();
-                            startActivity(intent);
+
+
                             //overridePendingTransition(R.anim.right_in, R.anim.left_out); //ใหม่ , เก่า
 
                         } else {
@@ -174,6 +177,37 @@ public class Login extends Activity {
                 startActivity(intent);
             }
         });
+
+    }
+    
+    private void checkTel(){
+
+        mAuth = FirebaseAuth.getInstance();
+        DatabaseReference dbref = FirebaseDatabase.getInstance().getReference();
+        DatabaseReference childref = dbref.child("user").child(mAuth.getUid().toString()).child("info");
+
+        valueEventListener = new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+
+
+                if (dataSnapshot.child("tel").getValue().toString().equals("null")) {
+                    intent = new Intent(getApplication(), firstLoginDetail.class);
+
+                } else {
+                    intent = new Intent(getApplication(), MainActivity.class);
+
+                }
+                finish();
+                startActivity(intent);
+}
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        };
+
 
     }
 
