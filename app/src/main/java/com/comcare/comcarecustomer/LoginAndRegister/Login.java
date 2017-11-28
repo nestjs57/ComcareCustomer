@@ -66,7 +66,7 @@ public class Login extends Activity {
                         handleFacebookAccessToken(loginResult.getAccessToken());
                         Profile profile = Profile.getCurrentProfile();
                         if (profile != null) {
-                            String facebook_id =  profile.getId();
+                            String facebook_id = profile.getId();
                             String f_name = profile.getFirstName();
                             String m_name = profile.getMiddleName();
                             String l_name = profile.getLastName();
@@ -76,6 +76,7 @@ public class Login extends Activity {
 
                         }
                     }
+
                     @Override
                     public void onCancel() {
                         // App code
@@ -89,6 +90,7 @@ public class Login extends Activity {
 
 
     }
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -96,6 +98,7 @@ public class Login extends Activity {
         mProgressDialog.setMessage("กำลังเข้าสู่ระบบ ..");
         mProgressDialog.show();
     }
+
     private void handleFacebookAccessToken(AccessToken token) {
         // [START_EXCLUDE silent]
         // [END_EXCLUDE]
@@ -128,22 +131,22 @@ public class Login extends Activity {
                                         FirebaseUser user = mAuth.getCurrentUser();
                                         DatabaseReference dbref = FirebaseDatabase.getInstance().getReference();
                                         //DatabaseReference childrf = dbref.child("user");
-                                        if(!dataSnapshot.hasChildren()){
+                                        if (!dataSnapshot.hasChildren()) {
                                             // db has no children
-                                            String facebook_id =  profile.getId();
+                                            String facebook_id = profile.getId();
                                             String f_name = profile.getFirstName();
                                             String m_name = profile.getMiddleName();
                                             String l_name = profile.getLastName();
                                             String full_name = profile.getName();
 
-                                            String profile_image = profile.getProfilePictureUri(400, 400).toString();
+                                            String profile_image = profile.getProfilePictureUri(300, 300).toString();
                                             dbref.child("user").child(mAuth.getUid()).child("info").child("full_name").setValue(full_name);
                                             dbref.child("user").child(mAuth.getUid()).child("info").child("profile_image").setValue(profile_image);
                                             dbref.child("user").child(mAuth.getUid()).child("info").child("tel").setValue("null");
                                             intent = new Intent(getApplication(), firstLoginDetail.class);
                                             finish();
                                             startActivity(intent);
-                                        }else {
+                                        } else {
                                             checkTel();
 
                                         }
@@ -169,7 +172,6 @@ public class Login extends Activity {
                             childref.addValueEventListener(valueEventListener);
 
 
-
                             //Toast.makeText(login.this, "username & password Fail", Toast.LENGTH_SHORT).show();
 
                             //checkTel();
@@ -186,7 +188,8 @@ public class Login extends Activity {
                     }
                 });
     }
-    private void setEvent(){
+
+    private void setEvent() {
 
         txtLogin = (TextView) findViewById(R.id.txtLogin);
         btnMailRegister = (Button) findViewById(R.id.button2);
@@ -208,8 +211,8 @@ public class Login extends Activity {
         });
 
     }
-    
-    private void checkTel(){
+
+    private void checkTel() {
 
         mAuth = FirebaseAuth.getInstance();
         DatabaseReference dbref = FirebaseDatabase.getInstance().getReference();
@@ -242,6 +245,5 @@ public class Login extends Activity {
 
         Intent intent = new Intent(getApplication(), MainActivity.class);
     }
-
 
 }
