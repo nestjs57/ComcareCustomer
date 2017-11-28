@@ -10,12 +10,15 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.comcare.comcarecustomer.Models.StatusModel;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
 import java.util.Collections;
 
@@ -28,6 +31,9 @@ public class StatusDetail extends AppCompatActivity {
     private Intent intent;
     private TextView txtName, txtTel, txtMail, txtType, txtDate, txtAddress1, txtAddress2, txtProblem1, txtProblem2;
     private ImageView txtPath_img1, txtPath_img2, txtPath_img3, txtPath_img4;
+
+    StorageReference storageReference;
+
 
 
     @Override
@@ -74,19 +80,18 @@ public class StatusDetail extends AppCompatActivity {
 
     private void connectToFirebase() {
         intent = getIntent();
+        storageReference = FirebaseStorage.getInstance().getReference();
+
 
         valueEventListener = new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-
 
                 if (dataSnapshot.child("technician_Name").getValue().toString().equals("null")) {
                     txtName.setText("กำลังค้นหาช่าง");
                     txtTel.setText("-");
                     txtMail.setText("-");
                     txtName.setTextColor(Color.parseColor("#ffff8800"));
-                } else {
-
                 }
                 if (dataSnapshot.child("type").getValue().toString().equals("1")) {
                     txtType.setText("คอมพิวเตอร์");
@@ -99,6 +104,17 @@ public class StatusDetail extends AppCompatActivity {
                 txtAddress1.setText(dataSnapshot.child("address2").getValue().toString());
                 txtProblem1.setText(dataSnapshot.child("problem1").getValue().toString());
                 txtProblem2.setText(dataSnapshot.child("problem2").getValue().toString());
+
+
+                Toast.makeText(getApplication(), dataSnapshot.child("Path_img1").getValue().toString(), Toast.LENGTH_LONG).show();
+
+                Glide.with(getApplication()).load("gs://comcare-196c4.appspot.com/photo/wOJfIbFepiU2TiBtnCeRC299F6D3/image:79").into(txtPath_img1);
+//                Glide.with(getApplication()).load(dataSnapshot.child("Path_img3").getValue().toString()).into(txtPath_img3);
+//                Glide.with(getApplication()).load(dataSnapshot.child("Path_img4").getValue().toString()).into(txtPath_img4);
+//                dataSnapshot.child("Path_img1").getValue().toString();
+
+
+
 
             }
 
