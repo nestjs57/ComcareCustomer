@@ -108,42 +108,71 @@ public class Login extends Activity {
                         if (task.isSuccessful()) {
                             mProgressDialog.dismiss();
                             // Sign in success, update UI with the signed-in user's information
-                            FirebaseUser user = mAuth.getCurrentUser();
-
-                            DatabaseReference dbref = FirebaseDatabase.getInstance().getReference();
-                            DatabaseReference childrf = dbref.child("user");
-
-
-
                             //build child
                             //childrf.child(user.getUid()).child("info").setValue(new DataUer(Email,Password,user.getUid(),"null",DisplayName));
                             //String a = ""+user;
                             //Toast.makeText(getApplication(),"ยินดีต้อนรับ : "+user.getUid().toString(), Toast.LENGTH_LONG).show();
 
-                            Profile profile = Profile.getCurrentProfile();
-                            if (profile != null) {
-                                String facebook_id =  profile.getId();
-                                String f_name = profile.getFirstName();
-                                String m_name = profile.getMiddleName();
-                                String l_name = profile.getLastName();
-                                String full_name = profile.getName();
-                                String profile_image = profile.getProfilePictureUri(400, 400).toString();
-                                Toast.makeText(getApplication(),"ยินดีต้อนรับ : "+full_name, Toast.LENGTH_LONG).show();
 
-                                dbref.child("user").child(user.getUid()).child("info").child("f_name").setValue(f_name);
-                                dbref.child("user").child(user.getUid()).child("info").child("l_name").setValue(l_name);
-                                dbref.child("user").child(user.getUid()).child("info").child("full_name").setValue(full_name);
-                                dbref.child("user").child(user.getUid()).child("info").child("profile_image").setValue(profile_image);
-                                dbref.child("user").child(user.getUid()).child("info").child("name").setValue("null");
-                                dbref.child("user").child(user.getUid()).child("info").child("lastname").setValue("null");
-                                dbref.child("user").child(user.getUid()).child("info").child("tel").setValue("null");
-                                checkTel();
+                            DatabaseReference dbreff = FirebaseDatabase.getInstance().getReference();
+                            DatabaseReference childref = dbreff.child("user").child(mAuth.getUid().toString()).child("info");
+
+                            valueEventListener = new ValueEventListener() {
+                                @Override
+                                public void onDataChange(DataSnapshot dataSnapshot) {
+
+                                    //FirebaseUser user = mAuth.getCurrentUser();
+
+                                    Profile profile = Profile.getCurrentProfile();
+                                    if (profile != null) {
+                                        FirebaseUser user = mAuth.getCurrentUser();
+                                        DatabaseReference dbref = FirebaseDatabase.getInstance().getReference();
+                                        //DatabaseReference childrf = dbref.child("user");
+                                        if(!dataSnapshot.hasChildren()){
+                                            // db has no children
+                                            String facebook_id =  profile.getId();
+                                            String f_name = profile.getFirstName();
+                                            String m_name = profile.getMiddleName();
+                                            String l_name = profile.getLastName();
+                                            String full_name = profile.getName();
+
+                                            String profile_image = profile.getProfilePictureUri(400, 400).toString();
+                                            dbref.child("user").child(mAuth.getUid()).child("info").child("full_name").setValue(full_name);
+                                            dbref.child("user").child(mAuth.getUid()).child("info").child("profile_image").setValue(profile_image);
+                                            dbref.child("user").child(mAuth.getUid()).child("info").child("tel").setValue("null");
+                                            intent = new Intent(getApplication(), firstLoginDetail.class);
+                                            finish();
+                                            startActivity(intent);
+                                        }else {
+                                            checkTel();
+
+                                        }
 
 
-                            }
+                                        //Toast.makeText(getApplication(),"ยินดีต้อนรับ : "+full_name, Toast.LENGTH_LONG).show();
+
+
+//                                        dbref.child("user").child(user.getUid()).child("info").child("name").setValue("null");
+//                                        dbref.child("user").child(user.getUid()).child("info").child("lastname").setValue("null");
+
+
+                                    }
+
+
+                                }
+
+                                @Override
+                                public void onCancelled(DatabaseError databaseError) {
+
+                                }
+                            };
+                            childref.addValueEventListener(valueEventListener);
+
+
+
                             //Toast.makeText(login.this, "username & password Fail", Toast.LENGTH_SHORT).show();
 
-
+                            //checkTel();
                             //overridePendingTransition(R.anim.right_in, R.anim.left_out); //ใหม่ , เก่า
 
                         } else {
@@ -200,7 +229,7 @@ public class Login extends Activity {
                 }
                 finish();
                 startActivity(intent);
-}
+            }
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
@@ -208,7 +237,10 @@ public class Login extends Activity {
             }
         };
 
+        childref.addValueEventListener(valueEventListener);
 
+
+        Intent intent = new Intent(getApplication(), MainActivity.class);
     }
 
 
