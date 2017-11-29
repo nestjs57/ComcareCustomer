@@ -1,7 +1,10 @@
 package com.comcare.comcarecustomer.Adapter;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Color;
+import android.os.Handler;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -24,6 +27,9 @@ public class StatusAdapter extends RecyclerView.Adapter<StatusViewHolder>{
 
     private ImageView imageView;
     private ArrayList <StatusModel> statusSet;
+    private Runnable runable;
+    private ProgressDialog progressDialog;
+    private Intent intent;
 
     public StatusAdapter(ArrayList<StatusModel> statusSet) {
         this.statusSet = statusSet;
@@ -66,12 +72,28 @@ public class StatusAdapter extends RecyclerView.Adapter<StatusViewHolder>{
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
+            public void onClick(final View view) {
 
-
-                Intent intent = new Intent(view.getContext(),StatusDetail.class);
+                progressDialog = new ProgressDialog(view.getContext());
+                progressDialog.setMessage("Loading ...");
+                progressDialog.show();
+                final Handler handle = new Handler();
+                intent = new Intent(view.getContext(),StatusDetail.class);
                 intent.putExtra("key",data.getOrder_id());
-                view.getContext().startActivity(intent);
+
+                runable = new Runnable() {
+
+                    @Override
+                    public void run() {
+
+                        view.getContext().startActivity(intent);
+
+                        handle.removeCallbacks(runable);
+                        progressDialog.dismiss();
+
+                    }
+                };
+                handle.postDelayed(runable, 400); // delay 3 s.
 
             }
         });

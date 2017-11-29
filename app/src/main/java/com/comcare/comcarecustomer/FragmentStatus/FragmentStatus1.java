@@ -1,6 +1,7 @@
 package com.comcare.comcarecustomer.FragmentStatus;
 
 
+import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.app.Fragment;
@@ -39,6 +40,8 @@ public class FragmentStatus1 extends Fragment {
     private Runnable runable;
     private RecyclerView recyclerView;
     private LinearLayoutManager mLayoutManager;
+    private ProgressDialog progressDialog;
+
 
 
     public FragmentStatus1() {
@@ -54,7 +57,10 @@ public class FragmentStatus1 extends Fragment {
         View inflate = inflater.inflate(R.layout.fragment_fragment_status1, container, false);
 
         dataSet = new ArrayList<StatusModel>();
+
         adapter = new StatusAdapter(dataSet);
+
+
         recyclerView = (RecyclerView) inflate.findViewById(R.id.rcvyStatus);
         //recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
@@ -74,6 +80,13 @@ public class FragmentStatus1 extends Fragment {
 
         return inflate;
 
+    }
+
+    @Override
+    public void onResume() {
+
+        super.onResume();
+        //dataSet.clear();
     }
 
     private void pullDown(View inflate) {
@@ -102,6 +115,9 @@ public class FragmentStatus1 extends Fragment {
         valueEventListener = new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
+                dataSet.clear();
+                adapter.notifyDataSetChanged();
+
                 String problem, date, status, type, time, uid, oid;
 
                 for (DataSnapshot itemSnap : dataSnapshot.getChildren()) {

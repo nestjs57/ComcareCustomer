@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@android:color/black"
     android:orientation="vertical"
     tools:context="com.comcare.comcarecustomer.ImagePopup">
 
@@ -12,5 +13,6 @@
         android:layout_width="match_parent"
         android:layout_height="350dp"
         android:layout_gravity="center"
+        android:background="@android:color/black"
         app:srcCompat="@color/cast_expanded_controller_ad_label_background_color" />
 </LinearLayout>
