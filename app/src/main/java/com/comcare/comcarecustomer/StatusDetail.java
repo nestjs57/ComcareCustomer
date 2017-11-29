@@ -1,16 +1,25 @@
 package com.comcare.comcarecustomer;
 
+import android.app.AlertDialog;
+import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
+import android.os.Build;
+import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.MenuItem;
+import android.view.View;
+import android.view.Window;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.target.GlideDrawableImageViewTarget;
 import com.comcare.comcarecustomer.Models.StatusModel;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -30,7 +39,7 @@ public class StatusDetail extends AppCompatActivity {
     ValueEventListener valueEventListener;
     private Intent intent;
     private TextView txtName, txtTel, txtMail, txtType, txtDate, txtAddress1, txtAddress2, txtProblem1, txtProblem2;
-    private ImageView txtPath_img1, txtPath_img2, txtPath_img3, txtPath_img4;
+    private ImageView txtPath_img1, txtPath_img2, txtPath_img3, txtPath_img4, popupImg;
 
     StorageReference storageReference;
 
@@ -83,6 +92,7 @@ public class StatusDetail extends AppCompatActivity {
         storageReference = FirebaseStorage.getInstance().getReference();
 
 
+
         valueEventListener = new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -108,14 +118,12 @@ public class StatusDetail extends AppCompatActivity {
 
                 Toast.makeText(getApplication(), dataSnapshot.child("Path_img1").getValue().toString(), Toast.LENGTH_LONG).show();
 
-                Glide.with(getApplication()).load("gs://comcare-196c4.appspot.com/photo/wOJfIbFepiU2TiBtnCeRC299F6D3/image:79").into(txtPath_img1);
-//                Glide.with(getApplication()).load(dataSnapshot.child("Path_img3").getValue().toString()).into(txtPath_img3);
-//                Glide.with(getApplication()).load(dataSnapshot.child("Path_img4").getValue().toString()).into(txtPath_img4);
-//                dataSnapshot.child("Path_img1").getValue().toString();
+                Glide.with(getApplication()).load(dataSnapshot.child("Path_img1").getValue().toString()).into(txtPath_img1);
+                Glide.with(getApplication()).load(dataSnapshot.child("Path_img2").getValue().toString()).into(txtPath_img2);
+                Glide.with(getApplication()).load(dataSnapshot.child("Path_img3").getValue().toString()).into(txtPath_img3);
+                Glide.with(getApplication()).load(dataSnapshot.child("Path_img4").getValue().toString()).into(txtPath_img4);
 
-
-
-
+                setEvent(dataSnapshot);
             }
 
             @Override
@@ -126,6 +134,78 @@ public class StatusDetail extends AppCompatActivity {
         DatabaseReference dbref = FirebaseDatabase.getInstance().getReference();
         DatabaseReference childref = dbref.child("order").child(intent.getStringExtra("key"));
         childref.addValueEventListener(valueEventListener);
+    }
+
+    public void setEvent(final DataSnapshot dataSnapshot){
+
+        txtPath_img1.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View view) {
+
+                LayoutInflater inflater = LayoutInflater.from(StatusDetail.this);
+                view = inflater.inflate(R.layout.image_popup, null);
+                ImageView imageView = (ImageView)view.findViewById(R.id.img);
+
+                GlideDrawableImageViewTarget imageViewTarget = new GlideDrawableImageViewTarget(imageView);
+                Glide.with(getApplication()).load(dataSnapshot.child("Path_img1").getValue().toString()).into(imageViewTarget);
+
+                AlertDialog.Builder share_dialog = new AlertDialog.Builder(StatusDetail.this);
+                share_dialog.setView(view);
+                share_dialog.show();
+
+            }
+        });
+
+        txtPath_img2.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View view) {
+
+                LayoutInflater inflater = LayoutInflater.from(StatusDetail.this);
+                view = inflater.inflate(R.layout.image_popup, null);
+                ImageView imageView = (ImageView)view.findViewById(R.id.img);
+
+                GlideDrawableImageViewTarget imageViewTarget = new GlideDrawableImageViewTarget(imageView);
+                Glide.with(getApplication()).load(dataSnapshot.child("Path_img2").getValue().toString()).into(imageViewTarget);
+
+                AlertDialog.Builder share_dialog = new AlertDialog.Builder(StatusDetail.this);
+                share_dialog.setView(view);
+                share_dialog.show();
+
+            }
+        });
+
+        txtPath_img3.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View view) {
+
+                LayoutInflater inflater = LayoutInflater.from(StatusDetail.this);
+                view = inflater.inflate(R.layout.image_popup, null);
+                ImageView imageView = (ImageView)view.findViewById(R.id.img);
+
+                GlideDrawableImageViewTarget imageViewTarget = new GlideDrawableImageViewTarget(imageView);
+                Glide.with(getApplication()).load(dataSnapshot.child("Path_img3").getValue().toString()).into(imageViewTarget);
+
+                AlertDialog.Builder share_dialog = new AlertDialog.Builder(StatusDetail.this);
+                share_dialog.setView(view);
+                share_dialog.show();
+
+            }
+        });
+
+        txtPath_img4.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View view) {
+
+                LayoutInflater inflater = LayoutInflater.from(StatusDetail.this);
+                view = inflater.inflate(R.layout.image_popup, null);
+                ImageView imageView = (ImageView)view.findViewById(R.id.img);
+
+                GlideDrawableImageViewTarget imageViewTarget = new GlideDrawableImageViewTarget(imageView);
+                Glide.with(getApplication()).load(dataSnapshot.child("Path_img4").getValue().toString()).into(imageViewTarget);
+
+                AlertDialog.Builder share_dialog = new AlertDialog.Builder(StatusDetail.this);
+                share_dialog.setView(view);
+                share_dialog.show();
+
+            }
+        });
+
 
 
     }

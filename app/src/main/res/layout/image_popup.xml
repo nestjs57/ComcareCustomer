@@ -8,9 +8,9 @@
     tools:context="com.comcare.comcarecustomer.ImagePopup">
 
     <ImageView
-        android:id="@+id/imageView12"
-        android:layout_width="300dp"
-        android:layout_height="300dp"
-        app:srcCompat="@color/cast_expanded_controller_ad_label_background_color"
-        android:layout_gravity="center"/>
+        android:id="@+id/img"
+        android:layout_width="match_parent"
+        android:layout_height="350dp"
+        android:layout_gravity="center"
+        app:srcCompat="@color/cast_expanded_controller_ad_label_background_color" />
 </LinearLayout>
