@@ -90,7 +90,7 @@ public class SumDetail extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sum_detail);
-        getSupportActionBar().setTitle("Checkout");
+        getSupportActionBar().setTitle("ตรวจสอบความถูกต้อง");
         mStorage = FirebaseStorage.getInstance().getReference();
         progressDialog = new ProgressDialog(this);
         if (getSupportActionBar() != null) {

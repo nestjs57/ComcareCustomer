@@ -86,7 +86,7 @@ public class AddDetail extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_detail);
-        getSupportActionBar().setTitle("รายละเอียดงาน");
+        getSupportActionBar().setTitle("รายละเอียด");
 
         if (getSupportActionBar()!=null){
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
