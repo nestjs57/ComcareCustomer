@@ -90,7 +90,7 @@ public class SumDetail extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sum_detail);
-
+        getSupportActionBar().setTitle("Checkout");
         mStorage = FirebaseStorage.getInstance().getReference();
         progressDialog = new ProgressDialog(this);
         if (getSupportActionBar() != null) {
@@ -102,7 +102,7 @@ public class SumDetail extends AppCompatActivity {
         getStringIntent();
         setEvent();
         Intent intent = getIntent();
-        Toast.makeText(getApplicationContext(), intent.getStringExtra("img1"), Toast.LENGTH_SHORT).show();
+        //Toast.makeText(getApplicationContext(), intent.getStringExtra("img1"), Toast.LENGTH_SHORT).show();
 
     }
 
@@ -525,7 +525,7 @@ public class SumDetail extends AppCompatActivity {
             public void onDataChange(DataSnapshot dataSnapshot) {
                 name = (String) dataSnapshot.child("info").child("full_name").getValue();
                 tel = (String) dataSnapshot.child("info").child("tel").getValue();
-                Toast.makeText(getApplicationContext(), name, Toast.LENGTH_SHORT).show();
+                //Toast.makeText(getApplicationContext(), name, Toast.LENGTH_SHORT).show();
                 txtName.setText(name);
                 txtTel.setText(tel);
             }

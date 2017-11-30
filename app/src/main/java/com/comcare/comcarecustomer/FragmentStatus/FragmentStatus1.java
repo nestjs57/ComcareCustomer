@@ -126,7 +126,7 @@ public class FragmentStatus1 extends Fragment {
                     oid = itemSnap.getKey();
 
                     problem = statusModel.getproblem1() + "";
-                    date = statusModel.getDate() + "";
+                    //date = statusModel.getDate() + "";
                     status = statusModel.getStatus() + "";
                     type = statusModel.getType() + "";
                     time = statusModel.getTime() + "";

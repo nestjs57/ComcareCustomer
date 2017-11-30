@@ -12,6 +12,8 @@ import android.os.Handler;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
@@ -84,7 +86,7 @@ public class AddDetail extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_detail);
-
+        getSupportActionBar().setTitle("รายละเอียดงาน");
 
         if (getSupportActionBar()!=null){
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -116,8 +118,50 @@ public class AddDetail extends AppCompatActivity {
 //                        Toast.LENGTH_SHORT).show();
 //            }
 //        });
+        TextChange();
+
+
     }
 
+    public void TextChange(){
+        TextWatcher tw = new TextWatcher() {
+            public void afterTextChanged(Editable s){
+
+            }
+            public void  beforeTextChanged(CharSequence s, int start, int count, int after){
+                // you can check for enter key here
+            }
+            public void  onTextChanged (CharSequence s, int start, int before,int count) {
+                final int sdk = android.os.Build.VERSION.SDK_INT;
+                if(sdk < android.os.Build.VERSION_CODES.JELLY_BEAN) {
+                    edt1.setBackgroundDrawable( getResources().getDrawable(R.drawable.meterial_ph_white) );
+                } else {
+                    edt1.setBackground( getResources().getDrawable(R.drawable.meterial_ph_white));
+                }
+            }
+        };
+        edt1.addTextChangedListener(tw);
+
+        // edt 2
+
+        TextWatcher tw2 = new TextWatcher() {
+            public void afterTextChanged(Editable s){
+
+            }
+            public void  beforeTextChanged(CharSequence s, int start, int count, int after){
+                // you can check for enter key here
+            }
+            public void  onTextChanged (CharSequence s, int start, int before,int count) {
+                final int sdk = android.os.Build.VERSION.SDK_INT;
+                if(sdk < android.os.Build.VERSION_CODES.JELLY_BEAN) {
+                    edt2.setBackgroundDrawable( getResources().getDrawable(R.drawable.meterial_ph_white) );
+                } else {
+                    edt2.setBackground( getResources().getDrawable(R.drawable.meterial_ph_white));
+                }
+            }
+        };
+        edt2.addTextChangedListener(tw2);
+    }
     @Override
     protected void attachBaseContext(Context base) {
         super.attachBaseContext(CalligraphyContextWrapper.wrap(base));
@@ -212,12 +256,41 @@ public class AddDetail extends AppCompatActivity {
 
                 if (edt1.getText().toString().equals("") || edt2.getText().toString().equals("")) {
                     if (edt1.getText().toString().equals("") && edt2.getText().toString().equals("")) {
-                        Dialog("\n- อาการปัจจุบัน\n- คำอธิบายเพิ่มเติม");
+
+                        final int sdk = android.os.Build.VERSION.SDK_INT;
+                        if(sdk < android.os.Build.VERSION_CODES.JELLY_BEAN) {
+                            edt1.setBackgroundDrawable( getResources().getDrawable(R.drawable.outline_red) );
+                            edt2.setBackgroundDrawable( getResources().getDrawable(R.drawable.outline_red) );
+
+                        } else {
+                            edt1.setBackground( getResources().getDrawable(R.drawable.outline_red));
+                            edt2.setBackground( getResources().getDrawable(R.drawable.outline_red));
+                        }
+
+                        Dialog("\n\n- อาการปัจจุบัน\n\n- คำอธิบายเพิ่มเติม");
                     } else if (edt1.getText().toString().equals("")) {
-                        Dialog("\n- อาการปัจจุบัน");
+                        final int sdk = android.os.Build.VERSION.SDK_INT;
+                        if(sdk < android.os.Build.VERSION_CODES.JELLY_BEAN) {
+                            edt1.setBackgroundDrawable( getResources().getDrawable(R.drawable.outline_red) );
+                            edt2.setBackgroundDrawable( getResources().getDrawable(R.drawable.meterial_ph_white) );
+
+                        } else {
+                            edt1.setBackground( getResources().getDrawable(R.drawable.outline_red));
+                            edt2.setBackground( getResources().getDrawable(R.drawable.meterial_ph_white) );
+
+                        }
+                        Dialog("\n\n- อาการปัจจุบัน");
 
                     } else if (edt2.getText().toString().equals("")) {
-                        Dialog("\n- คำอธิบายเพิ่มเติม");
+                        final int sdk = android.os.Build.VERSION.SDK_INT;
+                        if(sdk < android.os.Build.VERSION_CODES.JELLY_BEAN) {
+                            edt1.setBackgroundDrawable( getResources().getDrawable(R.drawable.meterial_ph_white) );
+                            edt2.setBackgroundDrawable( getResources().getDrawable(R.drawable.outline_red) );
+                        } else {
+                            edt1.setBackground( getResources().getDrawable(R.drawable.meterial_ph_white) );
+                            edt2.setBackground( getResources().getDrawable(R.drawable.outline_red));
+                        }
+                        Dialog("\n\n- คำอธิบายเพิ่มเติม");
                     }
                 } else {
                     Intent intent = new Intent(getApplication(), SumDetail.class);
@@ -324,6 +397,8 @@ public class AddDetail extends AppCompatActivity {
         builder.setMessage("คุณยังไม่ได้กรอก: " + txt);
         builder.setPositiveButton("ตกลง", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int id) {
+                scrollView.fullScroll(ScrollView.FOCUS_UP);
+
 //                Toast.makeText(getApplicationContext(),
 //                        "ตกลง", Toast.LENGTH_SHORT).show();
             }
