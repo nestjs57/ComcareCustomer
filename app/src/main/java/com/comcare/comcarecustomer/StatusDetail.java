@@ -130,14 +130,18 @@ public class StatusDetail extends AppCompatActivity {
                         txtType.setText("โน๊ตบุ๊ค");
                     }
 
-                    txtDate.setText(dataSnapshot.child("date").getValue().toString() + "\n" + dataSnapshot.child("time").getValue().toString());
+                    txtDate.setText(dataSnapshot.child("day").getValue().toString() + " " +
+                            dataSnapshot.child("month").getValue().toString() + " " +
+                            dataSnapshot.child("year").getValue().toString() + "\n\n" +
+                            dataSnapshot.child("hour").getValue().toString() + " : " +
+                            dataSnapshot.child("minute").getValue().toString());
                     txtAddress2.setText(dataSnapshot.child("address1").getValue().toString());
                     txtAddress1.setText(dataSnapshot.child("address2").getValue().toString());
                     txtProblem1.setText(dataSnapshot.child("problem1").getValue().toString());
                     txtProblem2.setText(dataSnapshot.child("problem2").getValue().toString());
 
 
-                    Toast.makeText(getApplication(), dataSnapshot.child("Path_img1").getValue().toString(), Toast.LENGTH_LONG).show();
+                    //Toast.makeText(getApplication(), dataSnapshot.child("Path_img1").getValue().toString(), Toast.LENGTH_LONG).show();
 
                     Glide.with(getApplication()).load(dataSnapshot.child("Path_img1").getValue().toString()).into(txtPath_img1);
                     Glide.with(getApplication()).load(dataSnapshot.child("Path_img2").getValue().toString()).into(txtPath_img2);
@@ -154,6 +158,8 @@ public class StatusDetail extends AppCompatActivity {
                         chkImg = 3;
                     } else if (dataSnapshot.child("Path_img4").getValue().toString().equals("null")) {
                         chkImg = 4;
+                    }else {
+                        chkImg = 5;
                     }
 
                     if (!statusChk.equals("1")) {
@@ -218,7 +224,7 @@ public class StatusDetail extends AppCompatActivity {
             }
         });
 
-        if (chkImg == 2) {
+        if (chkImg == 2 || chkImg == 3||chkImg == 4||chkImg == 5) {
             txtPath_img1.setOnClickListener(new View.OnClickListener() {
                 public void onClick(View view) {
 
@@ -235,7 +241,8 @@ public class StatusDetail extends AppCompatActivity {
 
                 }
             });
-        } else if (chkImg == 3) {
+        }
+        if ( chkImg == 3||chkImg == 4||chkImg == 5) {
             txtPath_img2.setOnClickListener(new View.OnClickListener() {
                 public void onClick(View view) {
 
@@ -252,7 +259,8 @@ public class StatusDetail extends AppCompatActivity {
 
                 }
             });
-        } else if (chkImg == 4) {
+        }
+        if (chkImg == 4||chkImg == 5) {
             txtPath_img3.setOnClickListener(new View.OnClickListener() {
                 public void onClick(View view) {
 
@@ -269,9 +277,9 @@ public class StatusDetail extends AppCompatActivity {
 
                 }
             });
-        } else
+        }
 
-
+        if (chkImg == 5) {
             txtPath_img4.setOnClickListener(new View.OnClickListener() {
                 public void onClick(View view) {
 
@@ -288,6 +296,7 @@ public class StatusDetail extends AppCompatActivity {
 
                 }
             });
+        }
 
 
     }

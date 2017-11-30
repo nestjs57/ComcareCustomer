@@ -220,17 +220,24 @@ public class SumDetail extends AppCompatActivity {
 
                                     Intent intentFilepath = getIntent();
 
-                                    Calendar c = Calendar.getInstance();
-                                    SimpleDateFormat df = new SimpleDateFormat("dd-MM-yyyy");
-                                    SimpleDateFormat dff = new SimpleDateFormat("HH:mm");
-                                    String formattedDate = df.format(c.getTime());
-                                    String formattedDatef = dff.format(c.getTime());
+                                    DateFormat day = new SimpleDateFormat("dd");
+                                    DateFormat month = new SimpleDateFormat("MM");
+                                    DateFormat year = new SimpleDateFormat("yyyy");
+                                    DateFormat hour = new SimpleDateFormat("HH");
+                                    DateFormat minute = new SimpleDateFormat("mm");
+
+                                    Calendar calobj = Calendar.getInstance();
 
                                     x.child("user_id").setValue(auth.getCurrentUser().getUid().toString());
                                     x.child("name").setValue(txtName.getText().toString());
                                     x.child("tel").setValue(txtTel.getText().toString());
-                                    x.child("time").setValue(formattedDatef);
-                                    x.child("date").setValue(formattedDate);
+
+                                    x.child("day").setValue(day.format(calobj.getTime()));
+                                    x.child("month").setValue(month.format(calobj.getTime()));
+                                    x.child("year").setValue(year.format(calobj.getTime()));
+                                    x.child("hour").setValue(hour.format(calobj.getTime()));
+                                    x.child("minute").setValue(minute.format(calobj.getTime()));
+
                                     x.child("address1").setValue(address1.getText().toString());
                                     x.child("address2").setValue(address2.getText().toString());
                                     x.child("problem1").setValue(txt1.getText().toString());
@@ -279,17 +286,24 @@ public class SumDetail extends AppCompatActivity {
 
                                             Intent intentFilepath = getIntent();
 
-                                            Calendar c = Calendar.getInstance();
-                                            SimpleDateFormat df = new SimpleDateFormat("dd-MM-yyyy");
-                                            SimpleDateFormat dff = new SimpleDateFormat("HH:mm:");
-                                            String formattedDate = df.format(c.getTime());
-                                            String formattedDatef = dff.format(c.getTime());
+                                            DateFormat day = new SimpleDateFormat("dd");
+                                            DateFormat month = new SimpleDateFormat("MM");
+                                            DateFormat year = new SimpleDateFormat("yyyy");
+                                            DateFormat hour = new SimpleDateFormat("HH");
+                                            DateFormat minute = new SimpleDateFormat("mm");
+
+                                            Calendar calobj = Calendar.getInstance();
 
                                             x.child("user_id").setValue(auth.getCurrentUser().getUid().toString());
                                             x.child("name").setValue(txtName.getText().toString());
                                             x.child("tel").setValue(txtTel.getText().toString());
-                                            x.child("time").setValue(formattedDatef);
-                                            x.child("date").setValue(formattedDate);
+
+                                            x.child("day").setValue(day.format(calobj.getTime()));
+                                            x.child("month").setValue(month.format(calobj.getTime()));
+                                            x.child("year").setValue(year.format(calobj.getTime()));
+                                            x.child("hour").setValue(hour.format(calobj.getTime()));
+                                            x.child("minute").setValue(minute.format(calobj.getTime()));
+
                                             x.child("address1").setValue(address1.getText().toString());
                                             x.child("address2").setValue(address2.getText().toString());
                                             x.child("problem1").setValue(txt1.getText().toString());
@@ -346,17 +360,26 @@ public class SumDetail extends AppCompatActivity {
 
                                                     Intent intentFilepath = getIntent();
 
-                                                    Calendar c = Calendar.getInstance();
-                                                    SimpleDateFormat df = new SimpleDateFormat("dd-MM-yyyy");
-                                                    SimpleDateFormat dff = new SimpleDateFormat("HH:mm:");
-                                                    String formattedDate = df.format(c.getTime());
-                                                    String formattedDatef = dff.format(c.getTime());
+                                                    DateFormat day = new SimpleDateFormat("dd");
+                                                    DateFormat month = new SimpleDateFormat("MM");
+                                                    DateFormat year = new SimpleDateFormat("yyyy");
+                                                    DateFormat hour = new SimpleDateFormat("HH");
+                                                    DateFormat minute = new SimpleDateFormat("mm");
+
+                                                    Calendar calobj = Calendar.getInstance();
+
+
 
                                                     x.child("user_id").setValue(auth.getCurrentUser().getUid().toString());
                                                     x.child("name").setValue(txtName.getText().toString());
                                                     x.child("tel").setValue(txtTel.getText().toString());
-                                                    x.child("time").setValue(formattedDatef);
-                                                    x.child("date").setValue(formattedDate);
+
+                                                    x.child("day").setValue(day.format(calobj.getTime()));
+                                                    x.child("month").setValue(month.format(calobj.getTime()));
+                                                    x.child("year").setValue(year.format(calobj.getTime()));
+                                                    x.child("hour").setValue(hour.format(calobj.getTime()));
+                                                    x.child("minute").setValue(minute.format(calobj.getTime()));
+
                                                     x.child("address1").setValue(address1.getText().toString());
                                                     x.child("address2").setValue(address2.getText().toString());
                                                     x.child("problem1").setValue(txt1.getText().toString());
@@ -423,17 +446,24 @@ public class SumDetail extends AppCompatActivity {
 
                                                             Intent intentFilepath = getIntent();
 
-                                                            Calendar c = Calendar.getInstance();
-                                                            SimpleDateFormat df = new SimpleDateFormat("dd-MM-yyyy");
-                                                            SimpleDateFormat dff = new SimpleDateFormat("HH:mm:");
-                                                            String formattedDate = df.format(c.getTime());
-                                                            String formattedDatef = dff.format(c.getTime());
+                                                            DateFormat day = new SimpleDateFormat("dd");
+                                                            DateFormat month = new SimpleDateFormat("MM");
+                                                            DateFormat year = new SimpleDateFormat("yyyy");
+                                                            DateFormat hour = new SimpleDateFormat("HH");
+                                                            DateFormat minute = new SimpleDateFormat("mm");
+
+                                                            Calendar calobj = Calendar.getInstance();
 
                                                             x.child("user_id").setValue(auth.getCurrentUser().getUid().toString());
                                                             x.child("name").setValue(txtName.getText().toString());
                                                             x.child("tel").setValue(txtTel.getText().toString());
-                                                            x.child("time").setValue(formattedDatef);
-                                                            x.child("date").setValue(formattedDate);
+
+                                                            x.child("day").setValue(day.format(calobj.getTime()));
+                                                            x.child("month").setValue(month.format(calobj.getTime()));
+                                                            x.child("year").setValue(year.format(calobj.getTime()));
+                                                            x.child("hour").setValue(hour.format(calobj.getTime()));
+                                                            x.child("minute").setValue(minute.format(calobj.getTime()));
+
                                                             x.child("address1").setValue(address1.getText().toString());
                                                             x.child("address2").setValue(address2.getText().toString());
                                                             x.child("problem1").setValue(txt1.getText().toString());
