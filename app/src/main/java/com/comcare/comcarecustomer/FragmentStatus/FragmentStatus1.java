@@ -133,8 +133,17 @@ public class FragmentStatus1 extends Fragment {
                     uid = statusModel.getUser_id();
 
 
+                    String day = (String) itemSnap.child("day").getValue();
+                    String month = (String) itemSnap.child("month").getValue();
+                    String year = (String) itemSnap.child("year").getValue();
+
+                    String hour = (String) itemSnap.child("hour").getValue();
+                    String minute = (String) itemSnap.child("minute").getValue();
+
+                    String TotalDateTime = day+"-"+month+"-"+year+" | "+hour+" : "+minute;
+
                     if (firebaseDatabase.getUid().equals(uid)){
-                        dataSet.add(new StatusModel(problem, date, status, type, time, uid, oid));
+                        dataSet.add(new StatusModel(problem, TotalDateTime, status, type, time, uid, oid));
                     }
 
 
