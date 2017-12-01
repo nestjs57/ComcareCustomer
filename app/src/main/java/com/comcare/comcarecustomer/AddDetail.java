@@ -504,8 +504,8 @@ public class AddDetail extends AppCompatActivity {
         }else  if (requestCode == 2 && resultCode == RESULT_OK) {
 
             add_choose = data.getStringExtra("address");
-            lat_choose = data.getStringExtra("lat");
-            lng_choose = data.getStringExtra("lng");
+            latCur = data.getStringExtra("lat");
+            lngCur = data.getStringExtra("lng");
             textView.setText(add_choose);
         }
     }

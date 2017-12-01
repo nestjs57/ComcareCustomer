@@ -81,7 +81,6 @@ public class MainActivity extends AppCompatActivity
             Intent intent = new Intent(getApplication(), Login.class);
             startActivity(intent);
             finish();
-
         }
 
 
