@@ -14,6 +14,7 @@ import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.content.ContextCompat;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -39,6 +40,7 @@ import com.google.android.gms.maps.model.Circle;
 import com.google.android.gms.maps.model.CircleOptions;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.firebase.iid.FirebaseInstanceId;
 
 import java.util.ArrayList;
 
@@ -86,7 +88,7 @@ public class Fragment1 extends Fragment implements GoogleMap.OnMyLocationButtonC
         progressDialog = new ProgressDialog(getActivity());
         progressDialog.setMessage("กำลังค้นหาที่อยู่ปัจจุบัน ...");
         progressDialog.show();
-
+        showToken();
         bindWidgetMap(v);
         setEvent(v);
 
@@ -296,6 +298,8 @@ public class Fragment1 extends Fragment implements GoogleMap.OnMyLocationButtonC
 
     }
 
-    private class MarkerData {
+    //noti
+    public void showToken() {
+        Log.i("token", FirebaseInstanceId.getInstance().getToken());
     }
 }

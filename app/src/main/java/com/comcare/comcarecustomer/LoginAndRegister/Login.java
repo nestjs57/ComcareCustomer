@@ -33,6 +33,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.iid.FirebaseInstanceId;
 
 public class Login extends Activity {
 
@@ -138,11 +139,14 @@ public class Login extends Activity {
                                             String m_name = profile.getMiddleName();
                                             String l_name = profile.getLastName();
                                             String full_name = profile.getName();
+                                            String token = FirebaseInstanceId.getInstance().getToken();
 
                                             String profile_image = profile.getProfilePictureUri(300, 300).toString();
                                             dbref.child("user").child(mAuth.getUid()).child("info").child("full_name").setValue(full_name);
                                             dbref.child("user").child(mAuth.getUid()).child("info").child("profile_image").setValue(profile_image);
                                             dbref.child("user").child(mAuth.getUid()).child("info").child("tel").setValue("null");
+                                            dbref.child("user").child(mAuth.getUid()).child("info").child("token").setValue(token);
+
                                             intent = new Intent(getApplication(), firstLoginDetail.class);
                                             finish();
                                             startActivity(intent);
