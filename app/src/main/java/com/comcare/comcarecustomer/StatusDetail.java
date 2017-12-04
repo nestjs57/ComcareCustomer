@@ -123,6 +123,10 @@ public class StatusDetail extends AppCompatActivity {
                         txtTel.setText("-");
                         txtMail.setText("-");
                         txtName.setTextColor(Color.parseColor("#ffff8800"));
+                    }else{
+                        txtName.setText(dataSnapshot.child("technician_Name").getValue().toString());
+                        txtTel.setText(dataSnapshot.child("tel").getValue().toString());
+                        txtMail.setText("-");
                     }
                     if (dataSnapshot.child("type").getValue().toString().equals("1")) {
                         txtType.setText("คอมพิวเตอร์");
