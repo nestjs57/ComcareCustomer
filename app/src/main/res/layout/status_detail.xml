@@ -332,6 +332,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="30 บางปะกอก ราษฎร์บูรณะ กรุงเทพ 10140"
+                            android:lineSpacingExtra="10dp"
                             android:textColor="#333"
                             android:textSize="16dp" />
 
@@ -389,6 +390,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="5dp"
                             android:text="คอมเปิดไม่ติดเลยอะจ้า"
+                            android:lineSpacingExtra="10dp"
                             android:textColor="#333"
                             android:textSize="16dp" />
 
@@ -448,7 +450,8 @@
                             android:maxLines="3"
                             android:text="เครื่องมันดังตี๊ดๆ ไม่รู้จะทำยังไงดีค่า เสียใจมาก ทำอะไรไม่ได้เลยอ่า"
                             android:textColor="#333"
-                            android:textSize="16dp" />
+                            android:textSize="16dp"
+                            android:lineSpacingExtra="10dp"/>
 
                     </LinearLayout>
                 </LinearLayout>

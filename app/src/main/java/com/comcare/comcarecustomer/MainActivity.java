@@ -57,7 +57,8 @@ import uk.co.chrisjenx.calligraphy.CalligraphyConfig;
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
 public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
+        implements NavigationView.OnNavigationItemSelectedListener
+{
 
     private FirebaseUser mAuth;
 
@@ -79,7 +80,7 @@ public class MainActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
-        //
+
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 
@@ -167,6 +168,12 @@ public class MainActivity extends AppCompatActivity
         }
     }
 
+    private void logout(){
+        FirebaseAuth.getInstance().signOut();
+        LoginManager.getInstance().logOut();
+        startActivity(new Intent(this, MainActivity.class));
+        finish();
+    }
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -191,9 +198,6 @@ public class MainActivity extends AppCompatActivity
             return false;
         }
     };
-
-
-
 
 
     @Override
@@ -229,30 +233,35 @@ public class MainActivity extends AppCompatActivity
             finish();
             return true;
         }
+        else if (id == R.id.menu_profile) {
+            Toast.makeText(MainActivity.this, "nav_slideshow", Toast.LENGTH_LONG).show();
 
-        return super.onOptionsItemSelected(item);
+        } else if (id == R.id.menu_option) {
+            Toast.makeText(MainActivity.this, "nav_manage", Toast.LENGTH_LONG).show();
+
+        } else if (id == R.id.menu_contact) {
+            Toast.makeText(MainActivity.this, "nav_manage", Toast.LENGTH_LONG).show();
+        } else if (item.getItemId()==R.id.menu_logout){
+            logout();
+        }
+            return super.onOptionsItemSelected(item);
+
     }
 
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
         int id = item.getItemId();
-
-        if (id == R.id.nav_camera) {
-            // Handle the camera action
-
-
-        } else if (id == R.id.nav_slideshow) {
+        if (id == R.id.menu_profile) {
             Toast.makeText(MainActivity.this, "nav_slideshow", Toast.LENGTH_LONG).show();
 
-        } else if (id == R.id.nav_manage) {
+        } else if (id == R.id.menu_option) {
             Toast.makeText(MainActivity.this, "nav_manage", Toast.LENGTH_LONG).show();
 
-        } else if (id == R.id.nav_send) {
-            Toast.makeText(MainActivity.this, "nav_send", Toast.LENGTH_LONG).show();
-
-
-
+        } else if (id == R.id.menu_contact) {
+           logout();
+        } else if (item.getItemId()==R.id.menu_logout){
+            logout();
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

@@ -122,7 +122,8 @@
                     android:maxLength="168"
                     android:padding="10dp"
                     android:textColor="#333"
-                    android:textSize="14sp" />
+                    android:textSize="14sp"
+                    android:lineSpacingExtra="10dp"/>
 
                 <TextView
                     android:id="@+id/textview3"
@@ -258,6 +259,7 @@
                     android:gravity="top"
                     android:hint="บ้านเลขที่ อาคาร ซอย"
                     android:inputType="textMultiLine"
+                    android:lineSpacingExtra="10dp"
                     android:maxHeight="120dp"
                     android:maxLength="168"
                     android:padding="10dp"

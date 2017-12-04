@@ -5,28 +5,27 @@
 
     <group android:checkableBehavior="single">
         <item
-            android:id="@+id/nav_camera"
+            android:id="@+id/menu_profile"
             android:icon="@drawable/customer"
             android:title="โปรไฟล์" />
 
         <item
-            android:id="@+id/nav_manage"
+            android:id="@+id/menu_option"
             android:icon="@drawable/setting"
             android:title="การตั้งค่า" />
 
         <item
-            android:id="@+id/nav_slideshow"
+            android:id="@+id/menu_contact"
             android:icon="@drawable/phone"
             android:title="ติดต่อเรา" />
+
+        <item
+            android:id="@+id/menu_logout"
+            android:icon="@drawable/powerbtn"
+            android:title="ออกจากระบบ" />
     </group>
 
-    <item android:title="Communicate">
-        <menu>
-            <item
-                android:id="@+id/nav_send"
-                android:icon="@drawable/powerbtn"
-                android:title="ออกจากระบบ" />
-        </menu>
-    </item>
+
+
 
 </menu>

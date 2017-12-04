@@ -137,6 +137,7 @@
                         android:layout_marginTop="5dp"
                         android:background="@drawable/meterial_ph_white"
                         android:padding="10dp"
+                        android:lineSpacingExtra="10dp"
                         android:text="เปิดเครื่องไม่ได้ ขึ้นจอสีฟ้า"
                         android:textColor="#333" />
 
@@ -160,6 +161,7 @@
                         android:background="@drawable/meterial_ph_white"
                         android:maxLength="168"
                         android:padding="10dp"
+                        android:lineSpacingExtra="10dp"
                         android:text="Windows เปิดไม่ขึ้น พอเปิดเครื่องขึ้นคำว่าRecoveryอะไรซักอย่าง เเล้วก็Restartใหม่เรื่อยๆ"
                         android:textColor="#333" />
 
@@ -253,6 +255,7 @@
                         android:maxLength="168"
                         android:padding="10dp"
                         android:text="30 ราษฏร์บูรณะ แขวงบางปะกอก กรุงเทพ 10140"
+                        android:lineSpacingExtra="10dp"
                         android:textColor="#333" />
 
 
