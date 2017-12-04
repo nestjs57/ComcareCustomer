@@ -53,25 +53,4 @@ public class StatusViewHolder extends RecyclerView.ViewHolder{
 }
 }
 
-//            valueEventListener = new ValueEventListener() {
-//                @Override
-//                public void onDataChange(DataSnapshot dataSnapshot) {
-//
-//                    for (DataSnapshot itemsnap : dataSnapshot.getChildren()) {
-//
-//                        String key = itemsnap.getKey();
-//
-//                        Toast.makeText(view.getContext(), key, Toast.LENGTH_LONG).show();
-//
-//                    }
-//
-//                }
-//
-//                @Override
-//                public void onCancelled(DatabaseError databaseError) {
-//
-//                }
-//            };
-//
-//            databaseReference = FirebaseDatabase.getInstance().getReference("order");
-//            databaseReference.addValueEventListener(valueEventListener);
+

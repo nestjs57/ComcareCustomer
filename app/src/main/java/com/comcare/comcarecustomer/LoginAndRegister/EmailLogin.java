@@ -43,7 +43,7 @@ public class EmailLogin extends AppCompatActivity {
         }else {
 
             firebaseAuth.signInWithEmailAndPassword(getMail.getText().toString(), getPass.getText().toString())
-                    .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                    .addOnCompleteListener(this,new OnCompleteListener<AuthResult>() {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
 

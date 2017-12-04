@@ -41,8 +41,6 @@ public class StatusAdapter extends RecyclerView.Adapter<StatusViewHolder>{
         View viewh = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_status,parent,false);
         final StatusViewHolder holder = new StatusViewHolder(viewh);
 
-
-
         return holder;
     }
 
@@ -55,10 +53,14 @@ public class StatusAdapter extends RecyclerView.Adapter<StatusViewHolder>{
             holder.img.setBackgroundResource(R.drawable.laptop);
         }
 
+
         if (data.getStatus().equals("2")){
             holder.txtStatus.setText("กำลังดำเนินการ");
             holder.txtStatus.setTextColor(Color.parseColor("#FF0000"));
         }else if (data.getStatus().equals("3")){
+            holder.txtStatus.setText("รอการยืนยัน");
+            holder.txtStatus.setTextColor(Color.parseColor("#FF0000"));
+        }else if (data.getStatus().equals("4")){
             holder.txtStatus.setText("เสร็จสิ้น");
             holder.txtStatus.setTextColor(Color.parseColor("#00FF00"));
         }
