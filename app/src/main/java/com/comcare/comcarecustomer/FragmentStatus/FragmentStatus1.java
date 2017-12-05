@@ -142,8 +142,11 @@ public class FragmentStatus1 extends Fragment {
 
                     String TotalDateTime = day+"-"+month+"-"+year+" | "+hour+" : "+minute;
 
-                    if (firebaseDatabase.getUid().equals(uid) && status.equals("2") || firebaseDatabase.getUid().equals(uid) && status.equals("3")){
-                        dataSet.add(new StatusModel(problem, TotalDateTime, status, type, time, uid, oid));
+                    if (firebaseDatabase.getUid().equals(uid)) {
+
+                        if (status.equals("1") || status.equals("2") || status.equals("3")) {
+                            dataSet.add(new StatusModel(problem, TotalDateTime, status, type, time, uid, oid));
+                        }
                     }
 
 

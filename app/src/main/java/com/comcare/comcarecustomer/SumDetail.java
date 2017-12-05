@@ -253,7 +253,7 @@ public class SumDetail extends AppCompatActivity {
                                     x.child("Path_img4").setValue("null");
                                     x.child("latCur").setValue(latCur);
                                     x.child("lngCur").setValue(lngCur);
-                                    x.child("technician_Name").setValue("null");
+                                    x.child("man_id").setValue("null");
                                     x.child("status").setValue("1");
 
                                     Intent intent = new Intent(SumDetail.this, MainActivity.class);
@@ -319,7 +319,7 @@ public class SumDetail extends AppCompatActivity {
                                             x.child("Path_img4").setValue("null");
                                             x.child("latCur").setValue(latCur);
                                             x.child("lngCur").setValue(lngCur);
-                                            x.child("technician_Name").setValue("null");
+                                            x.child("man_id").setValue("null");
                                             x.child("status").setValue("1");
 
                                             Intent intent = new Intent(SumDetail.this, MainActivity.class);
@@ -395,7 +395,7 @@ public class SumDetail extends AppCompatActivity {
                                                     x.child("Path_img4").setValue("null");
                                                     x.child("latCur").setValue(latCur);
                                                     x.child("lngCur").setValue(lngCur);
-                                                    x.child("technician_Name").setValue("null");
+                                                    x.child("man_id").setValue("null");
                                                     x.child("status").setValue("1");
 
                                                     Intent intent = new Intent(SumDetail.this, MainActivity.class);
@@ -479,7 +479,7 @@ public class SumDetail extends AppCompatActivity {
                                                             x.child("Path_img4").setValue(downloadUri4.toString() );
                                                             x.child("latCur").setValue(latCur);
                                                             x.child("lngCur").setValue(lngCur);
-                                                            x.child("technician_Name").setValue("null");
+                                                            x.child("man_id").setValue("null");
                                                             x.child("status").setValue("1");
 
                                                             Intent intent = new Intent(SumDetail.this, MainActivity.class);
