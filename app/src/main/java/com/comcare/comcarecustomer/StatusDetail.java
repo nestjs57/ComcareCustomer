@@ -118,13 +118,13 @@ public class StatusDetail extends AppCompatActivity {
             public void onDataChange(DataSnapshot dataSnapshot) {
 
                 if (del == false) {
-                    if (dataSnapshot.child("technician_Name").getValue().toString().equals("null")) {
+                    if (dataSnapshot.child("man_id").getValue().toString().equals("null")) {
                         txtName.setText("กำลังค้นหาช่าง");
                         txtTel.setText("-");
                         txtMail.setText("-");
                         txtName.setTextColor(Color.parseColor("#ffff8800"));
                     }else{
-                        txtName.setText(dataSnapshot.child("technician_Name").getValue().toString());
+                        txtName.setText(dataSnapshot.child("man_id").getValue().toString());
                         txtTel.setText(dataSnapshot.child("tel").getValue().toString());
                         txtMail.setText("-");
                     }
