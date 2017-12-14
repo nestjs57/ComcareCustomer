@@ -42,7 +42,7 @@ import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 public class StatusDetail extends AppCompatActivity {
 
     DatabaseReference databaseReference;
-    ValueEventListener valueEventListener;
+    ValueEventListener valueEventListener,manListener;
     private Intent intent;
     private TextView txtName, txtTel, txtMail, txtType, txtDate, txtAddress1, txtAddress2, txtProblem1, txtProblem2;
     private ImageView txtPath_img1, txtPath_img2, txtPath_img3, txtPath_img4, popupImg;
@@ -53,7 +53,9 @@ public class StatusDetail extends AppCompatActivity {
     private ProgressBar spinner;
     private ProgressDialog progressDialog;
     StorageReference storageReference;
-    private String statusChk;
+    DatabaseReference dbref;
+    DatabaseReference childref;
+    private String statusChk,manName,manTel;
     private Runnable runable;
 
 
@@ -88,7 +90,6 @@ public class StatusDetail extends AppCompatActivity {
 
 //        Toast.makeText(StatusDetail.this, intent.getStringExtra("key"), Toast.LENGTH_LONG).show();
 
-
         connectToFirebase();
 
 
@@ -117,6 +118,8 @@ public class StatusDetail extends AppCompatActivity {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
 
+
+
                 if (del == false) {
                     if (dataSnapshot.child("man_id").getValue().toString().equals("null")) {
                         txtName.setText("กำลังค้นหาช่าง");
@@ -124,9 +127,9 @@ public class StatusDetail extends AppCompatActivity {
                         txtMail.setText("-");
                         txtName.setTextColor(Color.parseColor("#ffff8800"));
                     }else{
-                        txtName.setText(dataSnapshot.child("man_id").getValue().toString());
-                        txtTel.setText(dataSnapshot.child("tel").getValue().toString());
-                        txtMail.setText("-");
+
+                        getManInfo(dataSnapshot.child("man_id").getValue().toString());
+
                     }
                     if (dataSnapshot.child("type").getValue().toString().equals("1")) {
                         txtType.setText("คอมพิวเตอร์");
@@ -312,4 +315,31 @@ public class StatusDetail extends AppCompatActivity {
 
 
     }
+    public void getManInfo(String Mid){
+
+        valueEventListener = new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+
+
+                manName = dataSnapshot.child("name").getValue().toString();
+                manTel = dataSnapshot.child("tel").getValue().toString();
+                txtName.setText(manName);
+                txtTel.setText(manTel);
+                txtMail.setText(dataSnapshot.child("email").getValue().toString());
+
+            }
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        };
+        dbref = FirebaseDatabase.getInstance().getReference();
+        childref = dbref.child("man").child(Mid).child("info");
+        childref.addValueEventListener(valueEventListener);
+
+
+    }
+
+
 }
