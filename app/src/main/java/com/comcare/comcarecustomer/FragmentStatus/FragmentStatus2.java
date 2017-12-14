@@ -147,7 +147,7 @@ public class FragmentStatus2 extends Fragment {
 
 
                 }
-                Collections.reverse(dataSet);
+//                Collections.reverse(dataSet);
                 adapter.notifyDataSetChanged();
             }
 

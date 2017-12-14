@@ -23,7 +23,7 @@
         android:name=".CustomFont"
         android:allowBackup="true"
         android:hardwareAccelerated="false"
-        android:icon="@mipmap/cc_logo"
+        android:icon="@drawable/logo2"
         android:label="@string/app_name"
         android:largeHeap="true"
         android:roundIcon="@mipmap/ic_launcher_round"
@@ -80,7 +80,13 @@
         <activity android:name=".LoginAndRegister.EmailRegister" />
         <activity android:name=".firstLoginDetail" />
         <activity android:name=".StatusDetail" />
-        <activity android:name=".ImagePopup"></activity>
+        <activity android:name=".ImagePopup" />
+        <activity android:name=".Splash">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>

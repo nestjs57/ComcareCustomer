@@ -52,8 +52,8 @@ public class firstLoginDetail extends AppCompatActivity {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 childref.child("tel").setValue(s);
-                Toast.makeText(getApplication(), "ได้แล้วเย่ๆ",
-                        Toast.LENGTH_SHORT).show();
+//                Toast.makeText(getApplication(), "ได้แล้วเย่ๆ",
+//                        Toast.LENGTH_SHORT).show();
             }
 
             @Override

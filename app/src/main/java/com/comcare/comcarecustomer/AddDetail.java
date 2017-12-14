@@ -96,7 +96,6 @@ public class AddDetail extends AppCompatActivity {
         Intent intent = getIntent();
         latCur = intent.getStringExtra("latCur");
         lngCur = intent.getStringExtra("lngCur");
-        Toast.makeText(AddDetail.this, latCur, Toast.LENGTH_LONG).show();
         bindWidget();
         setEvent();
 
@@ -477,25 +476,25 @@ public class AddDetail extends AppCompatActivity {
             if (btn1 == false) {
                 mImageUri = data.getData();
                 btnImage1.setImageURI(mImageUri);
-                Toast.makeText(this, mImageUri.toString(), Toast.LENGTH_LONG).show();
+//                Toast.makeText(this, mImageUri.toString(), Toast.LENGTH_LONG).show();
                 btn1 = true;
                 btnStr1 = mImageUri.toString();
             } else if (btn2 == false) {
                 mImageUri = data.getData();
                 btnImage2.setImageURI(mImageUri);
-                Toast.makeText(this, mImageUri.toString(), Toast.LENGTH_LONG).show();
+//                 Toast.makeText(this, mImageUri.toString(), Toast.LENGTH_LONG).show();
                 btn2 = true;
                 btnStr2 = mImageUri.toString();
             } else if (btn3 == false) {
                 mImageUri = data.getData();
                 btnImage3.setImageURI(mImageUri);
-                Toast.makeText(this, mImageUri.toString(), Toast.LENGTH_LONG).show();
+//                 Toast.makeText(this, mImageUri.toString(), Toast.LENGTH_LONG).show();
                 btn3 = true;
                 btnStr3 = mImageUri.toString();
             } else if (btn4 == false) {
                 mImageUri = data.getData();
                 btnImage4.setImageURI(mImageUri);
-                Toast.makeText(this, mImageUri.toString(), Toast.LENGTH_LONG).show();
+//                 Toast.makeText(this, mImageUri.toString(), Toast.LENGTH_LONG).show();
                 btn4 = true;
                 btnStr4 = mImageUri.toString();
             }
